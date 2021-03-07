@@ -26,3 +26,11 @@
 	bottom: 0;
 }
 </style>
+
+<script>
+export default {
+	created() {
+		this.$store.dispatch("getReleases");
+	},
+}
+</script>

@@ -27,6 +27,7 @@ h1 {
 
 .release {
   grid-row: 1 / 3;
+  cursor: pointer;
 }
 
 .release img {
@@ -45,7 +46,7 @@ h1 {
     <h1>Releases</h1>
 
     <div class="releases" >
-      <div class="release" v-for="release in releases">
+      <div class="release" v-for="release in releases" v-on:click="goToRelease(release)">
         <img v-bind:src="release.imageUrl">
         <p class="name">{{release.name}}</p>
       </div>
@@ -55,13 +56,17 @@ h1 {
 
 <script>
 export default {
-	created() {
-		this.$store.dispatch("getReleases");
-	},
   computed: {
     releases() {
       return this.$store.state.releases;
     }
+  },
+  methods: {
+      goToRelease({id}) {
+          this.$router.push({
+              path: `/release/${id}`
+          })
+      }
   }
 }
 </script>

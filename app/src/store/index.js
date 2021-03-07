@@ -43,7 +43,13 @@ async function getCredentialsFromAccess(access_grant) {
     return credentials;
 };
 
+const urlCache = new Map();
+
 async function getUrlFromStorjUri(uri) {
+    if(urlCache.has(uri) === true) {
+        return urlCache.get(uri);
+    }
+
     const {auth, host, path} = url.parse(uri);
     console.log({auth, host, path});
 
@@ -58,15 +64,20 @@ async function getUrlFromStorjUri(uri) {
         signatureVersion: "v4"
     });
 
-    return s3.getSignedUrl('getObject', {
+    const signedUrl = s3.getSignedUrl('getObject', {
         Bucket: host,
         Key: path.slice(1)
     });
+
+    urlCache.set(uri, signedUrl);
+    
+    return signedUrl;
 }
 
 export default new Vuex.Store({
 	state: {
-		releases: []
+		releases: [],
+        releasesLoading: true
 	},
 	mutations: {
 		pushRelease(state, release) {
@@ -76,7 +87,11 @@ export default new Vuex.Store({
             ];
 
             state.releases = releases;
-		}
+		},
+
+        finishLoading(state) {
+            state.releasesLoading = false;
+        }
 	},
 	actions: {
 		async getReleases({commit}) {
@@ -111,6 +126,7 @@ export default new Vuex.Store({
                 const release = {
                     id: releaseId,
                     name: metadata.name,
+                    tracks: metadata.tracks,
                     imageUrl: imageUrl
                 };
 
@@ -118,6 +134,8 @@ export default new Vuex.Store({
 
                 commit('pushRelease', release);
             }
+
+            commit('finishLoading');
 		}
 	},
 	modules: {
