@@ -1,20 +1,28 @@
 <style scoped>
 h1 {
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 70px;
-line-height: 82px;
-/* identical to box height */
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 82px;
+  /* identical to box height */
 
 
-color: #FFFFFF;
+  color: #FFFFFF;
+
+  margin-left: 5%;
+  margin-top: 100px;
 }
 
 .releases {
+  margin-top: 5rem;
+
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 50px;
 }
 
 .release {
@@ -23,11 +31,12 @@ color: #FFFFFF;
 
 .release img {
   width: 100%;
-  padding-top: 100%;
 }
 
-p {
-  font-size: 2rem;
+.name {
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 1rem;
 }
 </style>
 
@@ -38,7 +47,7 @@ p {
     <div class="releases" >
       <div class="release" v-for="release in releases">
         <img v-bind:src="release.imageUrl">
-        <p>{{release.name}}</p>
+        <p class="name">{{release.name}}</p>
       </div>
     </div>
   </div>
