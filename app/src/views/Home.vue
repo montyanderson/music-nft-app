@@ -45,7 +45,7 @@ h1 {
   <div class="home">
     <h1>Releases</h1>
 
-    <div class="releases" >
+    <div class="releases" v-if="!releasesLoading">
       <div class="release" v-for="release in releases" v-on:click="goToRelease(release)">
         <img v-bind:src="release.imageUrl">
         <p class="name">{{release.name}}</p>
@@ -60,6 +60,9 @@ export default {
   computed: {
     releases() {
       return this.$store.state.releases;
+    },
+    releasesLoading() {
+      return this.$store.state.releasesLoading;
     }
   },
   methods: {

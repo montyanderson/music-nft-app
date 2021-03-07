@@ -93,7 +93,7 @@ export default new Vuex.Store({
         }
 	},
 	actions: {
-		async getReleases({commit}) {
+		async getReleases({commit, state}) {
             await new Promise(r => setTimeout(r, 200));
 
             console.log(ocean);
@@ -129,6 +129,13 @@ export default new Vuex.Store({
                     tracks: metadata.tracks,
                     imageUrl: imageUrl
                 };
+
+                await new Promise(resolve => {
+                    const preload = new Image();
+
+                    preload.onload = resolve;
+                    preload.src = release.imageUrl;
+                });
 
                 console.log({release});
 
