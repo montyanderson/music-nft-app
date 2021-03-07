@@ -113,9 +113,11 @@ export default new Vuex.Store({
                 const metadataUrl = await getUrlFromStorjUri(metadataUri);
                 console.log({metadataUrl});
 
+                // NFT metadata format
                 const metadata = await (await fetch(metadataUrl)).json();
                 console.log({metadata});
 
+                // images are typically relative to metadata.json
                 const imageUri = url.resolve(metadataUri, metadata.image);
                 console.log({imageUri});
 
@@ -130,6 +132,7 @@ export default new Vuex.Store({
                     imageUrl: imageUrl
                 };
 
+                // wait for image to load into browser cache
                 await new Promise(resolve => {
                     const preload = new Image();
 
