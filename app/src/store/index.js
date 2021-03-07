@@ -73,6 +73,48 @@ async function getUrlFromStorjUri(uri) {
     return signedUrl;
 }
 
+async function getRelease(releaseId) {
+    const tokenId = Number(await ocean.methods.getTokenByRelease(releaseId, 0).call());
+    console.log({ releaseId, tokenId });
+
+    // e.g. sj://myaccess:mybucket/metadata.json
+    const metadataUri = await ocean.methods.tokenURI(tokenId).call();
+    console.log({metadataUri});
+
+    // e.g. https://gateway.tardigradeshare.io/...
+    const metadataUrl = await getUrlFromStorjUri(metadataUri);
+    console.log({metadataUrl});
+
+    // NFT metadata format
+    const metadata = await (await fetch(metadataUrl)).json();
+    console.log({metadata});
+
+    // images are typically relative to metadata.json
+    const imageUri = url.resolve(metadataUri, metadata.image);
+    console.log({imageUri});
+
+    const imageUrl = await getUrlFromStorjUri(imageUri);
+    console.log({imageUrl});
+
+    const release = {
+        id: releaseId,
+        name: metadata.name,
+        artist: metadata.artist,
+        tracks: metadata.tracks,
+        imageUrl: imageUrl
+    };
+
+    // wait for image to load into browser cache
+    await new Promise(resolve => {
+        const preload = new Image();
+
+        preload.onload = resolve;
+        preload.src = release.imageUrl;
+    });
+
+    return release;
+}
+
 export default new Vuex.Store({
 	state: {
 		releases: [],
@@ -98,51 +140,18 @@ export default new Vuex.Store({
 
             console.log(ocean);
 
-			const totalReleases = Number(await ocean.methods.getReleaseSupply().call());
-            console.log({ totalReleases });
+            let totalReleases = Number(await ocean.methods.getReleaseSupply().call());
 
-            for(let releaseId = 0; releaseId < totalReleases; releaseId++) {
-                const tokenId = Number(await ocean.methods.getTokenByRelease(releaseId, 0).call());
-                console.log({ releaseId, tokenId });
+            const releaseIds = [];
 
-                // e.g. sj://myaccess:mybucket/metadata.json
-                const metadataUri = await ocean.methods.tokenURI(tokenId).call();
-                console.log({metadataUri});
+            for(let i = 0; i < totalReleases; i++) {
+                releaseIds.push(i);
+            }
 
-                // e.g. https://gateway.tardigradeshare.io/...
-                const metadataUrl = await getUrlFromStorjUri(metadataUri);
-                console.log({metadataUrl});
+            const releases = await Promise.all(releaseIds.map(getRelease));
 
-                // NFT metadata format
-                const metadata = await (await fetch(metadataUrl)).json();
-                console.log({metadata});
-
-                // images are typically relative to metadata.json
-                const imageUri = url.resolve(metadataUri, metadata.image);
-                console.log({imageUri});
-
-                const imageUrl = await getUrlFromStorjUri(imageUri);
-                console.log({imageUrl});
-
-                const release = {
-                    id: releaseId,
-                    name: metadata.name,
-                    artist: metadata.artist,
-                    tracks: metadata.tracks,
-                    imageUrl: imageUrl
-                };
-
-                // wait for image to load into browser cache
-                await new Promise(resolve => {
-                    const preload = new Image();
-
-                    preload.onload = resolve;
-                    preload.src = release.imageUrl;
-                });
-
-                console.log({release});
-
-                commit('pushRelease', release);
+            for(const release of releases) {
+                commit("pushRelease", release);
             }
 
             commit('finishLoading');
