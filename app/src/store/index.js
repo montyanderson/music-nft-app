@@ -2,10 +2,13 @@ import url from 'url';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Contract from 'web3-eth-contract';
+import Web3WsProvider from 'web3-providers-ws';
 import S3 from 'aws-sdk/clients/s3';
 import abi from '../abi.json';
 
-Contract.setProvider(web3.currentProvider);
+
+// Contract.setProvider(web3.currentProvider);
+Contract.setProvider(new Web3WsProvider("wss://ropsten.infura.io/ws/v3/e0521fe0263543b79880ef251466bf33"));
 
 const ocean = new Contract(abi, "0x80A0f2482c5BcB72fF39835Dd2EE90ADc0352946");
 
