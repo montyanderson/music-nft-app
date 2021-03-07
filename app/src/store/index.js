@@ -1,14 +1,13 @@
-import { getDiffieHellman } from 'crypto';
 import url from 'url';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Web3 from 'web3';
-import AWS from 'aws-sdk';
+import Contract from 'web3-eth-contract';
+import S3 from 'aws-sdk/clients/s3';
 import abi from '../abi.json';
 
-const web3 = new Web3(window.web3.currentProvider);
+Contract.setProvider(web3.currentProvider);
 
-const ocean = new web3.eth.Contract(abi, "0x80A0f2482c5BcB72fF39835Dd2EE90ADc0352946");
+const ocean = new Contract(abi, "0x80A0f2482c5BcB72fF39835Dd2EE90ADc0352946");
 
 Vue.use(Vuex);
 
@@ -56,7 +55,7 @@ async function getUrlFromStorjUri(uri) {
     const {accessKey, secretKey} = await getCredentialsFromAccess(auth);
     console.log({accessKey, secretKey});
 
-    const s3 = new AWS.S3({
+    const s3 = new S3({
         accessKeyId: accessKey,
         secretAccessKey: secretKey,
         endpoint: "https://gateway.tardigradeshare.io",
@@ -126,6 +125,7 @@ export default new Vuex.Store({
                 const release = {
                     id: releaseId,
                     name: metadata.name,
+                    artist: metadata.artist,
                     tracks: metadata.tracks,
                     imageUrl: imageUrl
                 };

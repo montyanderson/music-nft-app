@@ -49,6 +49,7 @@ h1 {
       <div class="release" v-for="release in releases" v-on:click="goToRelease(release)">
         <img v-bind:src="release.imageUrl">
         <p class="name">{{release.name}}</p>
+        <p class="artist">{{release.artist}}</p>
       </div>
     </div>
   </div>
