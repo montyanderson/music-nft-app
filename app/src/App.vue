@@ -11,7 +11,7 @@
 }
 
 #app {
-	font-family: "Roboto", Avenir, Helvetica, Arial, sans-serif;
+	font-family: "Inter";
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: left;

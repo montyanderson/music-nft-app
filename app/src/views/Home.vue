@@ -1,6 +1,6 @@
 <style scoped>
 h1 {
-  font-family: Roboto;
+  font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 70px;
@@ -21,7 +21,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 50px;
 }
 
@@ -31,7 +31,35 @@ h1 {
 }
 
 .release img {
+  width: 250px;
+}
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 80px;
+}
+
+.connectBtn{
+  position: absolute;
+  background: white;
+  width: 180px;
+  height: 60px;
+  right: 10px;
+  top: 10px;
+}
+.connectText{
+  position: absolute;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+white-space: nowrap;
 }
 
 .name {
@@ -39,12 +67,31 @@ h1 {
   text-align: left;
   margin-top: 1rem;
 }
+
+@media only screen and (max-width: 1150px){
+   .releases {
+  grid-template-columns: 1fr 1fr 1fr;
+
+}
+}
+@media only screen and (max-width: 900px){
+   .releases {
+     display: flex;
+     flex-direction: row;
+
+}
+}
+
 </style>
 
 <template>
   <div class="home">
     <h1>Releases</h1>
-
+    <div class="header">
+<div class="connectBtn">
+  <h2 class="connectText">Connect to a wallet</h2>
+</div>
+</div>
     <div class="releases">
       <div class="release" v-for="release in releases" v-on:click="goToRelease(release)">
         <img v-bind:src="release.imageUrl">
