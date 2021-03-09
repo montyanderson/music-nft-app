@@ -1,5 +1,8 @@
 <template>
 	<div id="app">
+		<div class="connectBtn">
+				<h2 class="connectText">Connect to a wallet</h2>
+			</div>
         <router-view></router-view>
 	</div>
 </template>
@@ -25,6 +28,32 @@ overflow-x: hidden;
 	top: 0;
 	bottom: 0;
 }
+
+.connectBtn {
+	position: absolute;
+	width: 200px;
+	height: 65px;
+	right: 10px;
+	top: 10px;
+	z-index: +1;
+	cursor: pointer;
+	background: #608DFF;
+	border: none;
+	color: white;
+	border-radius: 120px;
+}
+.connectText {
+	position: absolute;
+	font-size: 16px;
+	font-weight: 600;
+	font-style: normal;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	white-space: nowrap;
+}
+
+
 </style>
 
 <script>

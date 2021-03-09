@@ -44,25 +44,6 @@
 	height: 80px;
 }
 
-.connectBtn {
-	position: absolute;
-	background: white;
-	width: 180px;
-	height: 60px;
-	right: 10px;
-	top: 10px;
-}
-.connectText {
-	position: absolute;
-	color: black;
-	font-size: 16px;
-	font-weight: 600;
-	font-style: normal;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	white-space: nowrap;
-}
 
 .name {
 	font-size: 1.5rem;
@@ -132,9 +113,7 @@
 	<div class="home">
 		<h1 class="releaseText">Releases</h1>
 		<div class="header">
-			<div class="connectBtn">
-				<h2 class="connectText">Connect to a wallet</h2>
-			</div>
+			
 		</div>
 		<div class="releases">
 			<div

@@ -27,7 +27,12 @@
 			</li>
 		</ol>
 		<div class="sidebar">
+			<div class="sidebarContent">
+			<h1 class="eth">0.01 ETH</h1>
+			<h3 class="dollar">$18.37</h3>
+			<h2 class="supply">7 available <br> 10 in supply</h2>
 			<button class="btn-a">Buy Now</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -60,12 +65,38 @@ export default {
 
 <style scoped>
 .sidebar{	
-	position: absolute;
-	width: 400px;
+	position: fixed;
+	width: 500px;
 	height: 100%;
 	top: 0;
 	background: #171717;
 right: 0;
+}
+.eth{
+	position: relative;
+	font-size: 41px;
+	margin-left: 70px;
+	top:60px;
+}
+.dollar{
+	position: relative;
+	font-size: 26px;
+	margin-top: 8px;
+	margin-left: 70px;
+	top:60px;
+}
+.supply{
+	font-size: 26px;
+	margin-left: 280px;
+	margin-top: -26px;
+}
+.sidebarContent{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: calc(100% - 150px);
+	overflow-y: scroll;
+
 }
 .outer-container {
 	display: flex;
@@ -114,7 +145,8 @@ h3 {
 	font-size: 18px;
 	width: 170px;
 	height: 65px;
-	margin-right: 15px;
+	margin-left: 70px;
+	margin-top: 60px;
 	cursor: pointer;
 	background: #608DFF;
 	border: none;
@@ -149,9 +181,7 @@ position: absolute;
 	height: 60px;
 	left: 55px;
 	top: 20px;
-	
-
-	width: calc(90% - 400px);
+	width: calc(90% - 500px);
 }
 .tracklist {
 	display: flex;
