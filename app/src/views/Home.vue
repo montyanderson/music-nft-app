@@ -145,6 +145,8 @@
 				<img v-bind:src="release.imageUrl" />
 				<p class="name">{{ release.name }}</p>
 				<p class="artist">{{ release.artist }}</p>
+				<p class="available" v-if="release.availableCopies === 0">sold out</p>
+				<p class="available" v-else>{{release.availableCopies}} available</p>
 			</div>
 		</div>
 	</div>

@@ -15,7 +15,7 @@ Contract.setProvider(
 
 const ocean = (window.ocean = new Contract(
 	abi,
-	"0x80A0f2482c5BcB72fF39835Dd2EE90ADc0352946"
+	"0x97cF2bB8186439935894ce9628993B5476bB9343"
 ));
 
 Vue.use(Vuex);
@@ -86,8 +86,20 @@ async function getRelease(releaseId) {
 	console.log({ releaseId, tokenId });
 
 	// e.g. sj://myaccess:mybucket/metadata.json
-	const metadataUri = await ocean.methods.tokenURI(tokenId).call();
-	console.log({ metadataUri });
+
+	const [
+		metadataUri,
+		_availableCopies,
+		price
+	] = await Promise.all([
+		ocean.methods.tokenURI(tokenId).call(),
+		ocean.methods.getAvailableCopies(tokenId).call(),
+		ocean.methods.getPrice(tokenId).call()
+	]);
+
+	const availableCopies = Number(_availableCopies);
+
+	console.log({ metadataUri, availableCopies, price });
 
 	let available = 0;
 
@@ -111,7 +123,9 @@ async function getRelease(releaseId) {
 		name: metadata.name,
 		artist: metadata.artist,
 		tracks: metadata.tracks,
-		imageUrl: imageUrl
+		imageUrl: imageUrl,
+		availableCopies,
+		price
 	};
 
 	// wait for image to load into browser cache
@@ -143,8 +157,6 @@ export default new Vuex.Store({
 	},
 	actions: {
 		async getReleases({ commit, state }) {
-			await new Promise(r => setTimeout(r, 200));
-
 			console.log(ocean);
 
 			let totalReleases = Number(
