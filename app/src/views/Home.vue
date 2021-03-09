@@ -44,7 +44,6 @@
 	height: 80px;
 }
 
-
 .name {
 	font-size: 1.5rem;
 	text-align: left;
@@ -112,9 +111,7 @@
 <template>
 	<div class="home">
 		<h1 class="releaseText">Releases</h1>
-		<div class="header">
-			
-		</div>
+		<div class="header"></div>
 		<div class="releases">
 			<div
 				class="release"
@@ -124,8 +121,12 @@
 				<img v-bind:src="release.imageUrl" />
 				<p class="name">{{ release.name }}</p>
 				<p class="artist">{{ release.artist }}</p>
-				<p class="available" v-if="release.availableCopies === 0">sold out</p>
-				<p class="available" v-else>{{release.availableCopies}} available</p>
+				<p class="available" v-if="release.availableCopies === 0">
+					sold out
+				</p>
+				<p class="available" v-else>
+					{{ release.availableCopies }} available
+				</p>
 			</div>
 		</div>
 	</div>

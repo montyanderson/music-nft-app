@@ -18,7 +18,7 @@
 			<h4 class="track-title">TITLE</h4>
 			<h4 class="track-time">TIME</h4>
 		</div>
-		
+
 		<ol>
 			<li v-for="(track, index) in release.tracks" class="tracks">
 				<div class="trackNum">{{ index + 1 }}</div>
@@ -28,10 +28,13 @@
 		</ol>
 		<div class="sidebar">
 			<div class="sidebarContent">
-			<h1 class="eth">0.01 ETH</h1>
-			<h3 class="dollar">$18.37</h3>
-			<h2 class="supply">7 available <br> 10 in supply</h2>
-			<button class="btn-a">Buy Now</button>
+				<h1 class="eth">0.01 ETH</h1>
+				<h3 class="dollar">$18.37</h3>
+				<h2 class="supply">
+					7 available <br />
+					10 in supply
+				</h2>
+				<button class="btn-a">Buy Now</button>
 			</div>
 		</div>
 	</div>
@@ -64,49 +67,48 @@ export default {
 </script>
 
 <style scoped>
-.sidebar{	
+.sidebar {
 	position: fixed;
 	width: 500px;
 	height: 100%;
 	top: 0;
 	background: #171717;
-right: 0;
+	right: 0;
 }
-.eth{
+.eth {
 	position: relative;
 	font-size: 41px;
 	margin-left: 70px;
-	top:60px;
+	top: 60px;
 }
-.dollar{
+.dollar {
 	position: relative;
 	font-size: 26px;
 	margin-top: 8px;
 	margin-left: 70px;
-	top:60px;
+	top: 60px;
 }
-.supply{
+.supply {
 	font-size: 26px;
 	margin-left: 280px;
 	margin-top: -26px;
 }
-.sidebarContent{
+.sidebarContent {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 	height: calc(100% - 150px);
 	overflow-y: scroll;
-
 }
 .outer-container {
 	display: flex;
 	flex-direction: row;
-	margin-top: -20px;
+	margin-top: 30px;
 }
 .outer-container img {
-	width: 280px;
-	height: 280px;
-	margin-top: 93px;
+	width: 320px;
+	height: 320px;
+	margin-top: 54px;
 	margin-left: 62px;
 }
 .album-info {
@@ -148,35 +150,37 @@ h3 {
 	margin-left: 70px;
 	margin-top: 60px;
 	cursor: pointer;
-	background: #608DFF;
+	background: #608dff;
 	border: none;
 	color: white;
 	border-radius: 120px;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3f74fb;
 }
 .btn-b {
 	width: 170px;
 	height: 65px;
 	border: none;
-    background: #608DFF; 
+	background: #608dff;
 	color: #ffffff;
 	font-size: 18px;
 	cursor: pointer;
 	top: 20px;
 	position: relative;
 	border-radius: 120px;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3f74fb;
 }
 .btn-a span {
 	font-size: 18px;
 }
-.trackNum{
-position: absolute;
+.trackNum {
+	position: absolute;
 	margin-left: 10px;
 }
-.trackName{
+.trackName {
 	position: absolute;
 	margin-left: 104px;
 }
-.tracks{
+.tracks {
 	position: relative;
 	height: 60px;
 	left: 55px;
