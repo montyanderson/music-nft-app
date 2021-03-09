@@ -7,7 +7,7 @@
 				<h2>
 					By <a href="#">{{ release.artist }}</a>
 				</h2>
-				<h2>2021, {{ numberTracks }} songs, 69 min</h2>
+				<h2>2021, {{ numberTracks }} songs</h2>
 				<div class="album-buttons">
 					<button class="btn-b">Play</button>
 				</div>
@@ -20,7 +20,7 @@
 		</div>
 
 		<ol>
-			<li v-for="(track, index) in release.tracks" class="tracks">
+			<li v-for="(track, index) in release.tracks" v-bind:key="index" class="tracks">
 				<div class="trackNum">{{ index + 1 }}</div>
 				<div class="trackName">{{ track.name }}</div>
 				<div class="line"></div>
@@ -31,8 +31,8 @@
 				<h1 class="eth">0.01 ETH</h1>
 				<h3 class="dollar">$18.37</h3>
 				<h2 class="supply">
-					7 available <br />
-					10 in supply
+					{{release.availableCopies}} available <br />
+					{{release.totalCopies}} in supply
 				</h2>
 				<button class="btn-a">Buy Now</button>
 			</div>
@@ -55,12 +55,8 @@ export default {
 		releasesLoading() {
 			return this.$store.state.releasesLoading;
 		},
-		numberTracks(index) {
-			let counter = 0;
-			for (let track in this.release.tracks) {
-				counter++;
-			}
-			return counter;
+		numberTracks() {
+			return this.release.tracks.length;
 		}
 	}
 };

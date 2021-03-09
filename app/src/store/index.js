@@ -90,14 +90,17 @@ async function getRelease(releaseId) {
 	const [
 		metadataUri,
 		_availableCopies,
+		_totalCopies,
 		price
 	] = await Promise.all([
 		ocean.methods.tokenURI(tokenId).call(),
 		ocean.methods.getAvailableCopies(tokenId).call(),
+		ocean.methods.getTotalCopies(tokenId).call(),
 		ocean.methods.getPrice(tokenId).call()
 	]);
 
 	const availableCopies = Number(_availableCopies);
+	const totalCopies = Number(_totalCopies);
 
 	console.log({ metadataUri, availableCopies, price });
 
@@ -125,6 +128,7 @@ async function getRelease(releaseId) {
 		tracks: metadata.tracks,
 		imageUrl: imageUrl,
 		availableCopies,
+		totalCopies,
 		price
 	};
 
@@ -166,6 +170,10 @@ export default new Vuex.Store({
 			const releaseIds = [];
 
 			for (let i = 0; i < totalReleases; i++) {
+				releaseIds.push(i);
+
+				// for debug
+				releaseIds.push(i);
 				releaseIds.push(i);
 			}
 
