@@ -10,7 +10,7 @@ import abi from '../abi.json';
 // Contract.setProvider(web3.currentProvider);
 Contract.setProvider(new Web3WsProvider("wss://ropsten.infura.io/ws/v3/e0521fe0263543b79880ef251466bf33"));
 
-const ocean = new Contract(abi, "0x80A0f2482c5BcB72fF39835Dd2EE90ADc0352946");
+const ocean = window.ocean = new Contract(abi, "0x80A0f2482c5BcB72fF39835Dd2EE90ADc0352946");
 
 Vue.use(Vuex);
 
@@ -80,9 +80,15 @@ async function getRelease(releaseId) {
     const tokenId = Number(await ocean.methods.getTokenByRelease(releaseId, 0).call());
     console.log({ releaseId, tokenId });
 
+    
+
     // e.g. sj://myaccess:mybucket/metadata.json
     const metadataUri = await ocean.methods.tokenURI(tokenId).call();
     console.log({metadataUri});
+
+    let available = 0;
+
+   
 
     // e.g. https://gateway.tardigradeshare.io/...
     const metadataUrl = await getUrlFromStorjUri(metadataUri);
