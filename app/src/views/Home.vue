@@ -1,5 +1,5 @@
 <style scoped>
-h1 {
+.releaseText {
   font-family: Inter;
   font-style: normal;
   font-weight: bold;
@@ -20,8 +20,11 @@ h1 {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+   flex-direction: row;
+   flex-grow: 2;
+
+   flex-wrap:  wrap ;
   grid-gap: 50px;
 }
 
@@ -35,7 +38,7 @@ h1 {
 }
 
 .header{
-  position: fixed;
+  position:absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -70,23 +73,74 @@ white-space: nowrap;
 
 @media only screen and (max-width: 1150px){
    .releases {
-  grid-template-columns: 1fr 1fr 1fr;
+ 
 
 }
 }
-@media only screen and (max-width: 900px){
-   .releases {
-     display: flex;
-     flex-direction: row;
+@media only screen and (max-width: 620px){
 
+  .releases{
+    width: 95%;
+    margin-left: 10px;
+    grid-gap: 20px;
+  }
+ .release img {
+  width: 45vw;
+}
+.releaseText{
+  font-size: 60px;
+  margin-left: 10px;
 }
 }
+
+@media only screen and (max-width: 500px){
+
+  .releases{
+     flex-direction: column;
+  flex-wrap:   nowrap;
+  margin-left: 20px;
+  margin-top: 100px;
+  }
+  .release img {
+  width: 90px;
+ margin-top: -70px;
+}
+  .releaseText{
+  font-size: 50px;
+  margin-top: 80px;
+  margin-left: 20px;
+}
+.name {
+  position: relative;
+  top: -91px;
+  left: 110px;
+font-weight: 600;
+  font-size: 1.4rem;
+  text-align: left;
+  margin-top: 1rem;
+}
+.artist{
+  position: relative;
+  top: -87px;
+  left: 110px;
+}
+}
+
+@media only screen and (max-width: 300px){
+ .releaseText{
+  font-size: 40px;
+}
+}
+
+
+
+
 
 </style>
 
 <template>
   <div class="home">
-    <h1>Releases</h1>
+    <h1 class="releaseText">Releases</h1>
     <div class="header">
 <div class="connectBtn">
   <h2 class="connectText">Connect to a wallet</h2>

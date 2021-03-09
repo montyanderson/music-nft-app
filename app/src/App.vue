@@ -16,7 +16,7 @@
 	-moz-osx-font-smoothing: grayscale;
 	text-align: left;
 	color: white;
-
+overflow-x: hidden;
 	background: linear-gradient(180deg, #2F2D2D 0%, #121212 100%);
 
 	position: absolute;
