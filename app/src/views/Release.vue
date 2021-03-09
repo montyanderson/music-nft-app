@@ -8,9 +8,7 @@
 					By <a href="#">{{ release.artist }}</a>
 				</h2>
 				<h2>2021, {{ numberTracks }} songs, 69 min</h2>
-				<h3>04/15</h3>
 				<div class="album-buttons">
-					<button class="btn-a">Buy Now 0.01<span>ETH</span></button>
 					<button class="btn-b">Play</button>
 				</div>
 			</div>
@@ -20,12 +18,17 @@
 			<h4 class="track-title">TITLE</h4>
 			<h4 class="track-time">TIME</h4>
 		</div>
-		<div class="line"></div>
+		
 		<ol>
-			<li v-for="(track, index) in release.tracks">
-				{{ index + 1 }}{{ track.name }}
+			<li v-for="(track, index) in release.tracks" class="tracks">
+				<div class="trackNum">{{ index + 1 }}</div>
+				<div class="trackName">{{ track.name }}</div>
+				<div class="line"></div>
 			</li>
 		</ol>
+		<div class="sidebar">
+			<button class="btn-a">Buy Now</button>
+		</div>
 	</div>
 </template>
 
@@ -56,15 +59,24 @@ export default {
 </script>
 
 <style scoped>
+.sidebar{	
+	position: absolute;
+	width: 400px;
+	height: 100%;
+	top: 0;
+	background: #171717;
+right: 0;
+}
 .outer-container {
 	display: flex;
 	flex-direction: row;
+	margin-top: -20px;
 }
 .outer-container img {
-	width: 311px;
-	height: auto;
-	margin-top: 90px;
-	margin-left: 72px;
+	width: 280px;
+	height: 280px;
+	margin-top: 93px;
+	margin-left: 62px;
 }
 .album-info {
 	display: flex;
@@ -90,7 +102,7 @@ a {
 	color: #ffffff;
 }
 h3 {
-	margin-top: 16px;
+	margin-top: 20px;
 	font-size: 22px;
 }
 .album-buttons {
@@ -99,27 +111,52 @@ h3 {
 	margin-top: 17px;
 }
 .btn-a {
-	font-size: 22px;
-	width: 230px;
-	height: 70px;
+	font-size: 18px;
+	width: 170px;
+	height: 65px;
 	margin-right: 15px;
 	cursor: pointer;
+	background: #608DFF;
+	border: none;
+	color: white;
+	border-radius: 120px;
 }
 .btn-b {
-	width: 187px;
-	height: 70px;
-	border: 2px solid #ffffff;
-	background-color: transparent;
+	width: 170px;
+	height: 65px;
+	border: none;
+    background: #608DFF; 
 	color: #ffffff;
-	font-size: 22px;
+	font-size: 18px;
 	cursor: pointer;
+	top: 20px;
+	position: relative;
+	border-radius: 120px;
 }
 .btn-a span {
 	font-size: 18px;
 }
+.trackNum{
+position: absolute;
+	margin-left: 10px;
+}
+.trackName{
+	position: absolute;
+	margin-left: 104px;
+}
+.tracks{
+	position: relative;
+	height: 60px;
+	left: 55px;
+	top: 20px;
+	
+
+	width: calc(90% - 400px);
+}
 .tracklist {
 	display: flex;
 	flex-direction: row;
+	margin-left: -26px;
 }
 .tracklist h4 {
 	margin-top: 55px;
@@ -130,14 +167,18 @@ h3 {
 	margin-right: 103px;
 }
 .track-title {
-	margin-right: 900px;
+	margin-right: 800px;
+	margin-left: -20px;
+}
+.track-time {
+	display: none;
 }
 .line {
-	position: absolute;
-	width: 1125px;
-	height: 0px;
-	left: 72px;
-	top: 491px;
-	border: 2px solid #6d6d6d;
+	position: relative;
+	height: 1px;
+	left: 0px;
+	width: 100%;
+	top: 40px;
+	background: #6d6d6d;
 }
 </style>
