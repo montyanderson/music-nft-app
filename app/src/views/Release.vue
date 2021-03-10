@@ -34,14 +34,15 @@
 					{{release.availableCopies}} available <br />
 					{{release.totalCopies}} in supply
 				</h2>
-
+				<div class="warning-wrapper">
 				<button class="btn-a" v-on:click="buy" v-bind:disabled="!walletConnected">Buy Now</button>
 
 				<p class="connect-warning" v-if="!walletConnected">You must connect your wallet to buy a release copy</p>
+				</div>
 
-				<h3>Owners</h3>
+				<h3 class="owner-title">Owners</h3>
 
-				<p v-for="owner in release.owners">{{owner.address}}</p>
+				<p v-for="owner in release.owners" class="owners">{{owner.address}}</p>
 			</div>
 		</div>
 	</div>
@@ -95,6 +96,7 @@ export default {
 	margin-top: 8px;
 	margin-left: 70px;
 	top: 60px;
+	color: #b7b7b7;
 }
 .supply {
 	font-size: 26px;
@@ -223,13 +225,27 @@ h3 {
 .track:last-child {
   border-bottom: none;
 }
-
+.warning-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
 .connect-warning {
+	display: flex;
 	position: relative;
 	width: 202px;
 	height: 48px;
-
+	margin-top: 65px;
+	margin-left: 39px;
+	align-self: center;
 	font-size: 15px;
 	color: #FFFFFF;
 }
+.owners,
+.owner-title {
+	margin-left: 40px;
+}
+.owner-title {
+	margin-bottom: 24px;
+}
+
 </style>

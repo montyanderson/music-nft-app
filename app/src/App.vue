@@ -3,7 +3,9 @@
 		<div class="connectBtn" v-if="!this.$store.state.walletConnected" v-on:click="$store.dispatch('connectWallet')">
 			<h2 class="connectText">Connect to a wallet</h2>
 		</div>
+		<transition name="fade" mode="out-in">
 		<router-view></router-view>
+		</transition>
 	</div>
 </template>
 
@@ -53,6 +55,16 @@
 	transform: translate(-50%, -50%);
 	white-space: nowrap;
 }
+
+/* transition effects */
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 </style>
 
 <script>
