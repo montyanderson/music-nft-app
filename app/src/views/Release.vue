@@ -34,7 +34,10 @@
 					{{release.availableCopies}} available <br />
 					{{release.totalCopies}} in supply
 				</h2>
-				<button class="btn-a" v-on:click="buy">Buy Now</button>
+
+				<button class="btn-a" v-on:click="buy" v-bind:disabled="!walletConnected">Buy Now</button>
+
+				<p class="connect-warning" v-if="!walletConnected">You must connect your wallet to buy a release copy</p>
 			</div>
 		</div>
 	</div>
@@ -54,6 +57,9 @@ export default {
 		},
 		releasesLoading() {
 			return this.$store.state.releasesLoading;
+		},
+		walletConnected() {
+			return this.$store.state.walletConnected;
 		}
 	},
 	methods: {
@@ -154,6 +160,12 @@ h3 {
 	border-radius: 120px;
 	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3f74fb;
 }
+
+.btn-a:disabled {
+	background: #444;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #444;
+}
+
 .btn-b {
 	width: 170px;
 	height: 65px;
@@ -208,4 +220,12 @@ h3 {
   border-bottom: none;
 }
 
+.connect-warning {
+	position: relative;
+	width: 202px;
+	height: 48px;
+
+	font-size: 15px;
+	color: #FFFFFF;
+}
 </style>
