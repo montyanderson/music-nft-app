@@ -7,25 +7,25 @@
 				<h2>
 					By <a href="#">{{ release.artist }}</a>
 				</h2>
-				<h2>2021, {{ numberTracks }} songs</h2>
+				<h2>2021, {{ release.tracks.length }} tracks</h2>
 				<div class="album-buttons">
 					<button class="btn-b">Play</button>
 				</div>
 			</div>
 		</div>
-		<div class="tracklist">
-			<h4 class="track-num">#</h4>
-			<h4 class="track-title">TITLE</h4>
-			<h4 class="track-time">TIME</h4>
-		</div>
 
-		<ol>
-			<li v-for="(track, index) in release.tracks" v-bind:key="index" class="tracks">
-				<div class="trackNum">{{ index + 1 }}</div>
-				<div class="trackName">{{ track.name }}</div>
-				<div class="line"></div>
-			</li>
-		</ol>
+		<table class="tracklist">
+			<tr class="track-header">
+				<th >#</th>
+				<th>TITLE</th>
+			</tr>
+
+			<tr v-for="(track, index) in release.tracks" v-bind:key="index" class="track">
+				<td>{{ index + 1 }}</td>
+				<td>{{ track.name }}</td>
+			</tr>
+		</table>
+
 		<div class="sidebar">
 			<div class="sidebarContent">
 				<h1 class="eth">0.01 ETH</h1>
@@ -34,7 +34,7 @@
 					{{release.availableCopies}} available <br />
 					{{release.totalCopies}} in supply
 				</h2>
-				<button class="btn-a">Buy Now</button>
+				<button class="btn-a" v-on:click="buy">Buy Now</button>
 			</div>
 		</div>
 	</div>
@@ -54,9 +54,11 @@ export default {
 		},
 		releasesLoading() {
 			return this.$store.state.releasesLoading;
-		},
-		numberTracks() {
-			return this.release.tracks.length;
+		}
+	},
+	methods: {
+		async buy() {
+			await this.$store.dispatch("buy", this.release.id);
 		}
 	}
 };
@@ -176,39 +178,34 @@ h3 {
 	position: absolute;
 	margin-left: 104px;
 }
-.tracks {
-	position: relative;
+
+.tracklist {
+	width: 800px;
+	margin-left: 62px;
+	margin-top: 25px;
+	border-collapse: collapse;
+}
+
+.track-header {
+	height: 60px;
+}
+
+.track {
 	height: 60px;
 	left: 55px;
 	top: 20px;
-	width: calc(90% - 500px);
+	border: solid #6d6d6d;
+	border-width: 1px 0;
+
+	font-size: 1rem;
+	font-weight: 500;
 }
-.tracklist {
-	display: flex;
-	flex-direction: row;
-	margin-left: -26px;
+
+.track:first-child {
+  border-top: none;
 }
-.tracklist h4 {
-	margin-top: 55px;
-	margin-bottom: 14px;
+.track:last-child {
+  border-bottom: none;
 }
-.track-num {
-	margin-left: 90px;
-	margin-right: 103px;
-}
-.track-title {
-	margin-right: 800px;
-	margin-left: -20px;
-}
-.track-time {
-	display: none;
-}
-.line {
-	position: relative;
-	height: 1px;
-	left: 0px;
-	width: 100%;
-	top: 40px;
-	background: #6d6d6d;
-}
+
 </style>

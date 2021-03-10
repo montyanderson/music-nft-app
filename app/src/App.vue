@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<div class="connectBtn">
+		<div class="connectBtn" v-if="!this.$store.state.walletConnected" v-on:click="$store.dispatch('connectWallet')">
 			<h2 class="connectText">Connect to a wallet</h2>
 		</div>
 		<router-view></router-view>

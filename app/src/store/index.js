@@ -146,17 +146,20 @@ async function getRelease(releaseId) {
 export default new Vuex.Store({
 	state: {
 		releases: [],
-		releasesLoading: true
+		releasesLoading: true,
+		walletConnected: false
 	},
 	mutations: {
-		pushRelease(state, release) {
-			const releases = [...state.releases, release];
-
-			state.releases = releases;
+		setReleases(state, releases) {
+			state.releases = [...releases];
 		},
 
 		finishLoading(state) {
 			state.releasesLoading = false;
+		},
+
+		connectWallet(state) {
+			state.walletConnected = true;
 		}
 	},
 	actions: {
@@ -173,17 +176,56 @@ export default new Vuex.Store({
 				releaseIds.push(i);
 
 				// for debug
-				releaseIds.push(i);
-				releaseIds.push(i);
+				//releaseIds.push(i);
+				//releaseIds.push(i);
 			}
 
 			const releases = await Promise.all(releaseIds.map(getRelease));
 
-			for (const release of releases) {
-				commit("pushRelease", release);
-			}
-
+			commit("setReleases", releases);
 			commit("finishLoading");
+		},
+
+		async connectWallet({ commit, state }) {
+			await window.ethereum.enable();
+
+			ocean.setProvider(
+				window.ethereum
+			);
+
+			commit("connectWallet");
+		},
+
+		async buy({ commit, dispatch, state }, releaseId) {
+			const baseTokenId = Number(
+				await ocean.methods.getTokenByRelease(releaseId, 0).call()
+			);
+
+			const totalCopies = Number(
+				await ocean.methods.getTotalCopies(baseTokenId).call()
+			);
+
+			const tokenId = await (async () => {
+				for(let i = 0; i < totalCopies; i++) {
+					try {
+						await ocean.methods.ownerOf(baseTokenId + i).call()
+					} catch(err) {
+						return baseTokenId + i;
+					}
+				}
+			})();
+
+			console.log('buy', {tokenId});
+
+			const tx = ocean.methods.buyToken(tokenId).send({
+				from: window.ethereum.selectedAddress,
+				value: await ocean.methods.getPrice(tokenId).call()
+			});
+
+			const receipt = await new Promise(resolve => tx.once('receipt', resolve));
+			console.log({ receipt });
+
+			await dispatch("getReleases");
 		}
 	},
 	modules: {}
