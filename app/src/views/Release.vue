@@ -27,7 +27,7 @@
 		</table>
 
 		<div class="sidebar">
-			<div class="user-detail" v-if="!walletConnected">
+			<div class="user-detail" v-if="walletConnected">
 				<div class="wallet">
 				<div class="wallet-value">0.04 <span class="eth-eth">ETH</span></div>
 				<div class="wallet-id">0x8b3b85bc94</div>
@@ -138,9 +138,9 @@ h3 {
 	cursor: pointer;
 	border: none;
 	color: white;
-background: linear-gradient(262.53deg, #608DFF 3.6%, #3F74FB 100%);
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134AD3, inset 0px 0px 10px #3F74FB;
-border-radius: 120px;
+	background: linear-gradient(262.53deg, #608DFF 3.6%, #3F74FB 100%);
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134AD3, inset 0px 0px 10px #3F74FB;
+	border-radius: 120px;
 }
 .supply {
 	font-size: 18px;
@@ -163,11 +163,11 @@ border-radius: 120px;
 .currency-wrapper,
 .line-wrapper {
 	display: flex;
-align-items: center;
+	align-items: center;
 }
 .line-wrapper {
-margin-top: 28px;
-margin-left: 24px;
+	margin-top: 28px;
+	margin-left: 24px;
 }
 
 .eth {
@@ -176,7 +176,7 @@ margin-left: 24px;
 }
 .buy-container {
 	align-self: center;
-	margin-top: 10px;
+	margin-top: 50px;
 	margin-bottom: 20px;
 	width: 310px;
 	height: 305px;
@@ -344,49 +344,8 @@ border-radius: 120px;
 .track:last-child {
   border-bottom: none;
 }
-.warning-wrapper {
-	display: flex;
-	flex-wrap: wrap;
-}
-.connect-warning {
-	display: flex;
-	position: relative;
-	width: 202px;
-	height: 48px;
-	margin-top: 65px;
-	margin-left: 39px;
-	align-self: center;
-	font-size: 15px;
-	color: #FFFFFF;
-}
 
-.extrapadding{
-	width: 2px;
-	height: 30px;
-	position: relative;
-	
-}
 
-/* <div class="sidebar">
-			<div class="sidebarContent">
-				<h1 class="eth">0.01 ETH</h1>
-				<h3 class="dollar">$18.37</h3>
-				<h2 class="supply">
-					{{release.availableCopies}} available <br />
-					{{release.totalCopies}} in supply
-				</h2>
-				<div class="warning-wrapper">
-				<button class="btn-a" v-on:click="buy" v-bind:disabled="!walletConnected">Buy Now</button>
 
-				<p class="connect-warning" v-if="!walletConnected">You must connect your wallet to buy a release copy</p>
-				</div>
-
-				<h3 class="owner-title">Owners</h3>
-
-				<p v-for="owner in release.owners" class="owners">{{owner.address}}</p>
-				<div class="extrapadding"></div>
-			</div>
-		</div>
-	</div> */
 
 </style>
