@@ -38,6 +38,10 @@
 				<button class="btn-a" v-on:click="buy" v-bind:disabled="!walletConnected">Buy Now</button>
 
 				<p class="connect-warning" v-if="!walletConnected">You must connect your wallet to buy a release copy</p>
+
+				<h3>Owners</h3>
+
+				<p v-for="owner in release.owners">{{owner.address}}</p>
 			</div>
 		</div>
 	</div>

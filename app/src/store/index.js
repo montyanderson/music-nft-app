@@ -102,6 +102,17 @@ async function getRelease(releaseId) {
 	const availableCopies = Number(_availableCopies);
 	const totalCopies = Number(_totalCopies);
 
+	const owners = (await Promise.all([...Array(totalCopies).keys()].map(async i => {
+		try {
+			return {
+				tokenId: tokenId + i,
+				address: await ocean.methods.ownerOf(tokenId + i).call()
+			};
+		} catch(err) {
+			return null;
+		}
+	}))).filter(address => address !== null);
+
 	console.log({ metadataUri, availableCopies, price });
 
 	let available = 0;
@@ -129,7 +140,8 @@ async function getRelease(releaseId) {
 		imageUrl: imageUrl,
 		availableCopies,
 		totalCopies,
-		price
+		price,
+		owners
 	};
 
 	// wait for image to load into browser cache
