@@ -39,11 +39,11 @@
 	top: 10px;
 	z-index: +1;
 	cursor: pointer;
-	background: #608dff;
 	border: none;
 	color: white;
 	border-radius: 120px;
-	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3f74fb;
+background: linear-gradient(264.48deg, #608DFF 1.37%, #3F74FB 95.35%);
+box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3F74FB;
 }
 .connectText {
 	position: absolute;

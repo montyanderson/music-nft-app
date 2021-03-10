@@ -160,30 +160,30 @@ h3 {
 	margin-left: 70px;
 	margin-top: 60px;
 	cursor: pointer;
-	background: #608dff;
 	border: none;
 	color: white;
 	border-radius: 120px;
-	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3f74fb;
+	background: linear-gradient(264.48deg, #608DFF 1.37%, #3F74FB 95.35%);
+box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3F74FB;
 }
 
 .btn-a:disabled {
-	background: #444;
-	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #444;
+background: linear-gradient(180deg, rgba(96, 141, 255, 0.5) 0%, rgba(23, 23, 23, 0) 100%);
+box-shadow: none;
 }
 
 .btn-b {
 	width: 170px;
 	height: 65px;
 	border: none;
-	background: #608dff;
 	color: #ffffff;
 	font-size: 18px;
 	cursor: pointer;
 	top: 20px;
 	position: relative;
 	border-radius: 120px;
-	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3f74fb;
+background: linear-gradient(264.48deg, #608DFF 1.37%, #3F74FB 95.35%);
+box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3F74FB;
 }
 .btn-a span {
 	font-size: 18px;
@@ -240,12 +240,19 @@ h3 {
 	font-size: 15px;
 	color: #FFFFFF;
 }
+.owner-title{
+	margin-top: 40px;
+}
+.owners{
+	font-size: 14px;
+}
 .owners,
 .owner-title {
-	margin-left: 40px;
+	margin-left: 70px;
 }
 .owner-title {
 	margin-bottom: 24px;
+	
 }
 
 </style>
