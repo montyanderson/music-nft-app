@@ -34,7 +34,7 @@
 .connectBtn {
 	position: fixed;
 	width: 200px;
-	height: 65px;
+	height: 62px;
 	right: 10px;
 	top: 10px;
 	z-index: +1;
@@ -42,8 +42,9 @@
 	border: none;
 	color: white;
 	border-radius: 120px;
-background: linear-gradient(264.48deg, #608DFF 1.37%, #3F74FB 95.35%);
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3F74FB;
+background: linear-gradient(262.53deg, #608DFF 3.6%, #3F74FB 100%);
+box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134AD3, inset 0px 0px 10px #3F74FB;
+border-radius: 120px;
 }
 .connectText {
 	position: absolute;

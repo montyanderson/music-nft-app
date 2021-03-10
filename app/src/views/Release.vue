@@ -43,6 +43,7 @@
 				<h3 class="owner-title">Owners</h3>
 
 				<p v-for="owner in release.owners" class="owners">{{owner.address}}</p>
+				<div class="extrapadding"></div>
 			</div>
 		</div>
 	</div>
@@ -109,6 +110,7 @@ export default {
 	width: 100%;
 	height: calc(100% - 150px);
 	overflow-y: scroll;
+	
 }
 .outer-container {
 	display: flex;
@@ -156,15 +158,16 @@ h3 {
 .btn-a {
 	font-size: 18px;
 	width: 170px;
-	height: 65px;
+	height: 62px;
 	margin-left: 70px;
 	margin-top: 60px;
 	cursor: pointer;
 	border: none;
 	color: white;
 	border-radius: 120px;
-	background: linear-gradient(264.48deg, #608DFF 1.37%, #3F74FB 95.35%);
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3F74FB;
+background: linear-gradient(262.53deg, #608DFF 3.6%, #3F74FB 100%);
+box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134AD3, inset 0px 0px 10px #3F74FB;
+border-radius: 120px;
 }
 
 .btn-a:disabled {
@@ -174,7 +177,7 @@ box-shadow: none;
 
 .btn-b {
 	width: 170px;
-	height: 65px;
+	height: 62px;
 	border: none;
 	color: #ffffff;
 	font-size: 18px;
@@ -182,8 +185,11 @@ box-shadow: none;
 	top: 20px;
 	position: relative;
 	border-radius: 120px;
-background: linear-gradient(264.48deg, #608DFF 1.37%, #3F74FB 95.35%);
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3F74FB;
+
+background: linear-gradient(262.53deg, #608DFF 3.6%, #3F74FB 100%);
+box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134AD3, inset 0px 0px 10px #3F74FB;
+border-radius: 120px;
+border-radius: 120px;
 }
 .btn-a span {
 	font-size: 18px;
@@ -198,7 +204,7 @@ box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3F74FB;
 }
 
 .tracklist {
-	width: 800px;
+	width: calc(90% - 500px);
 	margin-left: 62px;
 	margin-top: 25px;
 	border-collapse: collapse;
@@ -245,13 +251,21 @@ box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 10px #3F74FB;
 }
 .owners{
 	font-size: 14px;
+
 }
 .owners,
 .owner-title {
 	margin-left: 70px;
+	
 }
 .owner-title {
 	margin-bottom: 24px;
+}
+
+.extrapadding{
+	width: 2px;
+	height: 30px;
+	position: relative;
 	
 }
 
