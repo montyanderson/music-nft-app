@@ -18,6 +18,7 @@
 			<tr class="track-header">
 				<th >#</th>
 				<th>TITLE</th>
+
 			</tr>
 
 			<tr v-for="(track, index) in release.tracks" v-bind:key="index" class="track">
@@ -25,7 +26,6 @@
 				<td>{{ track.name }}</td>
 			</tr>
 		</table>
-
 		<div class="sidebar">
 			<div class="buy-container">
 				<div class="line-wrapper">
@@ -87,6 +87,7 @@ export default {
 </script>
 
 <style scoped>
+
 
 /* stuff inside  owner section */
 .owners {
@@ -201,7 +202,6 @@ h3 {
 .eth-eth  {
 	font-weight: 200;
 }
-/* stuff inside sidebar */
 
 .sidebar {
 	display: flex;
@@ -213,9 +213,9 @@ h3 {
 	background: #171717;
 	right: 0;
 }
+/* stuff inside sidebar */
 
-
-
+/* main release page items */
 
 .outer-container {
 	display: flex;
@@ -292,15 +292,18 @@ border-radius: 120px;
 	margin-left: 104px;
 }
 
+/* track list */
+
 .tracklist {
-	width: 100%;
+	width: calc(90% - 350px);
 	margin-left: 62px;
 	margin-top: 25px;
 	border-collapse: collapse;
 }
 
+
 .track-header {
-	height: 60px;
+	height: 80px;
 }
 
 .track {
@@ -309,7 +312,6 @@ border-radius: 120px;
 	top: 20px;
 	border: solid #6d6d6d;
 	border-width: 1px 0;
-
 	font-size: 1rem;
 	font-weight: 500;
 }
@@ -320,8 +322,9 @@ border-radius: 120px;
 .track:last-child {
   border-bottom: none;
 }
+/* track list */
 
-
+/* main release page items */
 
 
 </style>
