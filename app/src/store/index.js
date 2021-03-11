@@ -202,8 +202,10 @@ export default new Vuex.Store({
 				releaseIds.push(i);
 
 				// for debug
-				//releaseIds.push(i);
-				//releaseIds.push(i);
+				releaseIds.push(i);
+				releaseIds.push(i);
+				releaseIds.push(i);
+				releaseIds.push(i);
 			}
 
 			const releases = await Promise.all(releaseIds.map(getRelease));

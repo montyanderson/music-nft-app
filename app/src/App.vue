@@ -8,6 +8,12 @@
 				</router-link>
 			</p>
 
+			<p class="my-releases">
+				<router-link to="/">
+					My Releases
+				</router-link>
+			</p>
+
 			<div class="user-detail" v-if="$store.state.walletConnected">
 				<div class="wallet">
 				<div class="wallet-value">{{($store.state.balance / 10e17).toFixed(2)}} <span class="eth-eth">ETH</span></div>
@@ -62,22 +68,23 @@ a {
 }
 
 .all-releases {
-	position: absolute;
-width: 104px;
-height: 22px;
-left: 837px;
-top: 44px;
-z-index: 1;
+	position: fixed;
+	right: 400px;
+	top: 32px;
+	z-index: +1;
+	cursor: pointer;
+	border: none;
+color: #d4d4d4;
+}
 
-font-family: Inter;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 22px;
-/* identical to box height */
-
-
-color: #929292;
+.my-releases {
+	position: fixed;
+	right: 260px;
+	top: 32px;
+	z-index: +1;
+	cursor: pointer;
+	border: none;
+color: #d4d4d4;
 }
 
 main {
