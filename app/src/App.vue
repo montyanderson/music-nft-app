@@ -129,10 +129,8 @@ border-radius: 120px;
 	height: 73px;
 	border-radius: 300px;
 	background-color: #282626;
-	margin-top: 17px;
 	margin-left: auto;
 	margin-bottom: auto;
-	margin-right: 14px;	
 	z-index: +500;
 }
 
@@ -158,7 +156,7 @@ border-radius: 120px;
 .ball {
 	position: absolute;
 	top: 5px;
-	right: 10px;
+	right: 5px;
 
 	width: 63px;
 	height: 63px;

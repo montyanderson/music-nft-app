@@ -173,12 +173,13 @@ h3 {
 }
 .buy-container {
 	align-self: center;
-	margin-top: 50px;
+	margin-top: 100px;
 	margin-bottom: 20px;
 	width: 310px;
 	height: 305px;
 	background-color: #282626;
 	border-radius: 15px;
+	;
 }
 
 /* stuff inside buy button */
@@ -205,7 +206,6 @@ h3 {
 .sidebar {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	position: fixed;
 	width: 360px;
 	height: 100%;
