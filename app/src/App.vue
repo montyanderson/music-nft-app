@@ -75,7 +75,6 @@ a {
 }
 
 .all-releases {
-<<<<<<< HEAD
 	position: fixed;
 	right: 400px;
 	top: 32px;
@@ -93,23 +92,6 @@ color: #d4d4d4;
 	cursor: pointer;
 	border: none;
 color: #d4d4d4;
-=======
-	position: absolute;
-	width: 104px;
-	height: 22px;
-	left: 837px;
-	top: 44px;
-	z-index: 1;
-
-	font-family: Inter;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 22px;
-	/* identical to box height */
-
-	color: #929292;
->>>>>>> b1972c32a9d996b0e208a1a4b2be9d8d786dc0ca
 }
 
 main {
