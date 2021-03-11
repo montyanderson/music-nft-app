@@ -81,7 +81,7 @@ a {
 	z-index: +1;
 	cursor: pointer;
 	border: none;
-color: #d4d4d4;
+	color: #d4d4d4;
 }
 
 .my-releases {
@@ -90,8 +90,8 @@ color: #d4d4d4;
 	top: 32px;
 	z-index: +1;
 	cursor: pointer;
-	border: none;
-color: #d4d4d4;
+  border: none;
+  color: #d4d4d4;
 }
 
 main {
