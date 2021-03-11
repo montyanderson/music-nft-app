@@ -95,7 +95,7 @@ export default {
 	margin-left: 25px;
 }
 .owners p {
-		font-size: 13px;
+		font-size: 10px;
 	overflow: hidden;
 }
 .owner-container {
