@@ -178,6 +178,14 @@ export default new Vuex.Store({
 		async getReleases({ commit, state }) {
 			console.log(ocean);
 
+			const releasesCache = localStorage.getItem("releases-cache");
+
+			if(typeof releasesCache === "string") {
+				commit("setReleases", JSON.parse(releasesCache));
+			}
+
+			
+
 			let totalReleases = Number(
 				await ocean.methods.getReleaseSupply().call()
 			);
@@ -196,6 +204,8 @@ export default new Vuex.Store({
 
 			commit("setReleases", releases);
 			commit("finishLoading");
+
+			localStorage.setItem("releases-cache", JSON.stringify(releases));
 		},
 
 		async connectWallet({ commit, state }) {
