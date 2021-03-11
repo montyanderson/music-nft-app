@@ -92,7 +92,7 @@ export default {
 /* stuff inside  owner section */
 .owners {
 		margin-top: 29px;
-	margin-left: 25px;
+	margin-left: 24px;
 }
 .owners p {
 		font-size: 10px;
@@ -142,7 +142,8 @@ h3 {
 }
 .supply {
 	font-size: 18px;
-	margin-left: 87px;
+	margin-left: 160px;
+	position: absolute;
 }
 
 .dollar {
@@ -151,7 +152,8 @@ h3 {
 }
 .available {
 	font-size: 18px;
-	margin-left: 37px;
+	margin-left: 165px;
+	position: absolute;
 }
 .currency-wrapper {
 	margin-left: 24px;
