@@ -67,6 +67,7 @@ width: 104px;
 height: 22px;
 left: 837px;
 top: 44px;
+z-index: 1;
 
 font-family: Inter;
 font-style: normal;
