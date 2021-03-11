@@ -40,7 +40,10 @@
 				<div class="btn-cont">
 				<button class="btn-a" v-on:click="buy">Buy now</button>
 
-				<p class="own-warning">You already own 1 of these!</p>
+				<p class="own-warning" v-if="release.availableCopies === 0">sold out</p>
+				<p class="own-warning" v-else>You already own 1 of these!</p>
+
+
 				</div>
 				
 			</div>

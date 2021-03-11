@@ -187,6 +187,7 @@ export default new Vuex.Store({
 
 			if(typeof releasesCache === "string") {
 				commit("setReleases", JSON.parse(releasesCache));
+				commit("finishLoading");
 			}
 
 			
