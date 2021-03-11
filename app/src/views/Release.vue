@@ -88,9 +88,6 @@ export default {
 
 <style scoped>
 
-.main-cont {
-	width: 100%;
-}
 /* stuff inside  owner section */
 .owners {
 		margin-top: 29px;
