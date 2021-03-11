@@ -4,8 +4,8 @@
 		<nav>
 			<div class="user-detail" v-if="$store.state.walletConnected">
 				<div class="wallet">
-				<div class="wallet-value">0.04 <span class="eth-eth">ETH</span></div>
-				<div class="wallet-id">0x8b3b85bc94</div>
+				<div class="wallet-value">{{($store.state.balance / 10e17).toFixed(2)}} <span class="eth-eth">ETH</span></div>
+				<div class="wallet-id">{{$store.state.address.slice(0, 12)}}</div>
 				</div>
 				<div class="ball"></div>
 			</div>

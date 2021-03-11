@@ -38,7 +38,7 @@
 					<p class="supply">{{release.totalCopies}} in supply</p>
 				</div>
 				<div class="btn-cont">
-				<button class="btn-a">Buy now</button>
+				<button class="btn-a" v-on:click="buy">Buy now</button>
 
 				<p class="own-warning">You already own 1 of these!</p>
 				</div>

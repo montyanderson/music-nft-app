@@ -3,6 +3,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Contract from "web3-eth-contract";
 import Web3WsProvider from "web3-providers-ws";
+import Eth from "web3-eth";
 import S3 from "aws-sdk/clients/s3";
 import abi from "../abi.json";
 
@@ -159,7 +160,9 @@ export default new Vuex.Store({
 	state: {
 		releases: [],
 		releasesLoading: true,
-		walletConnected: false
+		walletConnected: false,
+		address: "",
+		balance: ""
 	},
 	mutations: {
 		setReleases(state, releases) {
@@ -170,8 +173,10 @@ export default new Vuex.Store({
 			state.releasesLoading = false;
 		},
 
-		connectWallet(state) {
+		connectWallet(state, { address, balance }) {
 			state.walletConnected = true;
+			state.address = address;
+			state.balance = balance;
 		}
 	},
 	actions: {
@@ -209,13 +214,21 @@ export default new Vuex.Store({
 		},
 
 		async connectWallet({ commit, state }) {
+			// await window.ethereum.enable();
 			await window.ethereum.enable();
 
 			ocean.setProvider(
 				window.ethereum
 			);
 
-			commit("connectWallet");
+			const eth = new Eth(window.ethereum);
+
+			const address = window.ethereum.selectedAddress;
+
+			commit("connectWallet", {
+				address,
+				balance: await eth.getBalance(address)
+			});
 		},
 
 		async buy({ commit, dispatch, state }, releaseId) {
