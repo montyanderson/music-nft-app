@@ -27,13 +27,7 @@
 		</table>
 
 		<div class="sidebar">
-			<div class="user-detail" v-if="walletConnected">
-				<div class="wallet">
-				<div class="wallet-value">0.04 <span class="eth-eth">ETH</span></div>
-				<div class="wallet-id">0x8b3b85bc94</div>
-				</div>
-				<div class="ball"></div>
-			</div>
+
 			<div class="buy-container">
 				<div class="line-wrapper">
 					<p class="eth">0.01 <p class="eth-eth eth">ETH</p></p>
@@ -202,27 +196,6 @@ h3 {
 }
 .eth-eth  {
 	font-weight: 200;
-}
-.user-detail {
-	display: flex;
-	width: 239px;
-	height: 73px;
-	border-radius: 300px;
-	background-color: #282626;
-	margin-top: 17px;
-	margin-left: auto;
-	margin-bottom: auto;
-	margin-right: 14px;	
-}
-.ball {
-	align-self: center;
-	margin-left: auto;
-	margin-right: 7px;
-	width: 63px;
-	height: 63px;
-	background: linear-gradient(57.71deg, #89aaff 6.65%, #2864ff 86.64%);
-	border-radius: 200px;
-
 }
 /* stuff inside sidebar */
 

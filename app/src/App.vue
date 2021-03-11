@@ -1,11 +1,25 @@
 <template>
 	<div id="app">
-		<div class="connectBtn" v-if="!this.$store.state.walletConnected" v-on:click="$store.dispatch('connectWallet')">
-			<h2 class="connectText">Connect to a wallet</h2>
-		</div>
-		<transition name="fade" mode="out-in">
-		<router-view></router-view>
-		</transition>
+
+		<nav>
+			<div class="user-detail" v-if="$store.state.walletConnected">
+				<div class="wallet">
+				<div class="wallet-value">0.04 <span class="eth-eth">ETH</span></div>
+				<div class="wallet-id">0x8b3b85bc94</div>
+				</div>
+				<div class="ball"></div>
+			</div>
+
+			<div class="connectBtn" v-else v-on:click="$store.dispatch('connectWallet')">
+				<h2 class="connectText">Connect to a wallet</h2>
+			</div>
+		</nav>
+
+		<main>
+			<transition name="fade" mode="out-in">
+			<router-view></router-view>
+			</transition>
+		</main>
 	</div>
 </template>
 
@@ -29,6 +43,17 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
+}
+
+
+nav {
+	height: 250px;
+}
+
+main {
+	position: absolute;
+	top: 75px;
+	width: 100%;
 }
 
 .connectBtn {
@@ -64,6 +89,53 @@ border-radius: 120px;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.user-detail {
+	position: fixed;
+	right: 10px;
+	top: 10px;
+
+	width: 239px;
+	height: 73px;
+	border-radius: 300px;
+	background-color: #282626;
+	margin-top: 17px;
+	margin-left: auto;
+	margin-bottom: auto;
+	margin-right: 14px;	
+	z-index: +500;
+}
+
+
+/* stuff inside sidebar */
+.wallet-id {
+	margin-left: 32px;
+	margin-top: 3px;
+
+}
+.wallet-value {
+	margin-top: 14px;
+	margin-left: 59px;
+	margin-bottom: 5px;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 24px;
+}
+.eth-eth  {
+	font-weight: 200;
+}
+
+.ball {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+
+	width: 63px;
+	height: 63px;
+	background: linear-gradient(57.71deg, #89aaff 6.65%, #2864ff 86.64%);
+	border-radius: 200px;
+
 }
 
 </style>
