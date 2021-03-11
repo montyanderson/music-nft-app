@@ -27,7 +27,6 @@
 		</table>
 
 		<div class="sidebar">
-
 			<div class="buy-container">
 				<div class="line-wrapper">
 					<p class="eth">0.01 <p class="eth-eth eth">ETH</p></p>
@@ -89,6 +88,9 @@ export default {
 
 <style scoped>
 
+.main-cont {
+	width: 100%;
+}
 /* stuff inside  owner section */
 .owners {
 		margin-top: 29px;
@@ -294,7 +296,7 @@ border-radius: 120px;
 }
 
 .tracklist {
-	width: calc(90% - 500px);
+	width: 100%;
 	margin-left: 62px;
 	margin-top: 25px;
 	border-collapse: collapse;
