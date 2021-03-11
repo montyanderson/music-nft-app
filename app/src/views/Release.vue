@@ -121,6 +121,7 @@ h3 {
 .own-warning {
 	margin-top: 42px;
 	font-size: 18px;
+	padding-bottom: 26px;
 }
 .btn-cont {
 	align-items: center;
@@ -173,7 +174,7 @@ h3 {
 }
 .buy-container {
 	align-self: center;
-	margin-top: 100px;
+	margin-top: 110px;
 	margin-bottom: 20px;
 	width: 310px;
 	height: 305px;
