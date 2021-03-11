@@ -1,6 +1,5 @@
 <template>
 	<div id="app">
-
 		<nav>
 			<p class="all-releases">
 				<router-link to="/">
@@ -10,20 +9,29 @@
 
 			<div class="user-detail" v-if="$store.state.walletConnected">
 				<div class="wallet">
-				<div class="wallet-value">{{($store.state.balance / 10e17).toFixed(2)}} <span class="eth-eth">ETH</span></div>
-				<div class="wallet-id">{{$store.state.address.slice(0, 12)}}</div>
+					<div class="wallet-value">
+						{{ ($store.state.balance / 10e17).toFixed(2) }}
+						<span class="eth-eth">ETH</span>
+					</div>
+					<div class="wallet-id">
+						{{ $store.state.address.slice(0, 12) }}
+					</div>
 				</div>
 				<div class="ball"></div>
 			</div>
 
-			<div class="connectBtn" v-else v-on:click="$store.dispatch('connectWallet')">
+			<div
+				class="connectBtn"
+				v-else
+				v-on:click="$store.dispatch('connectWallet')"
+			>
 				<h2 class="connectText">Connect to a wallet</h2>
 			</div>
 		</nav>
 
 		<main>
 			<transition name="fade" mode="out-in">
-			<router-view></router-view>
+				<router-view></router-view>
 			</transition>
 		</main>
 	</div>
@@ -51,7 +59,6 @@
 	bottom: 0;
 }
 
-
 nav {
 	height: 250px;
 }
@@ -63,21 +70,20 @@ a {
 
 .all-releases {
 	position: absolute;
-width: 104px;
-height: 22px;
-left: 837px;
-top: 44px;
-z-index: 1;
+	width: 104px;
+	height: 22px;
+	left: 837px;
+	top: 44px;
+	z-index: 1;
 
-font-family: Inter;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 22px;
-/* identical to box height */
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 22px;
+	/* identical to box height */
 
-
-color: #929292;
+	color: #929292;
 }
 
 main {
@@ -97,9 +103,10 @@ main {
 	border: none;
 	color: white;
 	border-radius: 120px;
-background: linear-gradient(262.53deg, #608DFF 3.6%, #3F74FB 100%);
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134AD3, inset 0px 0px 10px #3F74FB;
-border-radius: 120px;
+	background: linear-gradient(262.53deg, #608dff 3.6%, #3f74fb 100%);
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134ad3,
+		inset 0px 0px 10px #3f74fb;
+	border-radius: 120px;
 }
 .connectText {
 	position: absolute;
@@ -114,11 +121,12 @@ border-radius: 120px;
 
 /* transition effects */
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .1s;
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.1s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+	opacity: 0;
 }
 
 .user-detail {
@@ -135,22 +143,23 @@ border-radius: 120px;
 	z-index: +500;
 }
 
-
 /* stuff inside sidebar */
 .wallet-id {
 	margin-left: 32px;
-	margin-top: 3px;
-
+	margin-top: 40px;
+	position: absolute;
 }
 .wallet-value {
+	position: absolute;
 	margin-top: 14px;
-	margin-left: 59px;
+	margin-left: 32px;
 	margin-bottom: 5px;
 	font-weight: bold;
 	font-size: 20px;
 	line-height: 24px;
+	text-align: center;
 }
-.eth-eth  {
+.eth-eth {
 	font-weight: 200;
 }
 
@@ -163,9 +172,7 @@ border-radius: 120px;
 	height: 63px;
 	background: linear-gradient(57.71deg, #89aaff 6.65%, #2864ff 86.64%);
 	border-radius: 200px;
-
 }
-
 </style>
 
 <script>
