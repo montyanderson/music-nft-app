@@ -2,6 +2,12 @@
 	<div id="app">
 
 		<nav>
+			<p class="all-releases">
+				<router-link to="/">
+					All Releases
+				</router-link>
+			</p>
+
 			<div class="user-detail" v-if="$store.state.walletConnected">
 				<div class="wallet">
 				<div class="wallet-value">{{($store.state.balance / 10e17).toFixed(2)}} <span class="eth-eth">ETH</span></div>
@@ -48,6 +54,29 @@
 
 nav {
 	height: 250px;
+}
+
+a {
+	color: inherit !important;
+	text-decoration: inherit !important;
+}
+
+.all-releases {
+	position: absolute;
+width: 104px;
+height: 22px;
+left: 837px;
+top: 44px;
+
+font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+
+color: #929292;
 }
 
 main {
