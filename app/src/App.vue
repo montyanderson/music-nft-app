@@ -96,7 +96,7 @@ a {
 
 main {
 	position: absolute;
-	top: 75px;
+	top: 35px;
 	width: 100%;
 }
 

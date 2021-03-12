@@ -15,10 +15,11 @@
 
 .releases {
 	margin-top: 1rem;
-position: relative;
+  position: relative;
+
 	width: 95vw;
-display: table;
-margin-left: 4.9vw;
+	display: table;
+	margin-left: 4.9vw;
 	margin-right: auto;
 	display: flex;
 	flex-direction: row;
@@ -29,7 +30,6 @@ margin-left: 4.9vw;
 }
 
 .release {
-
 	cursor: pointer;
 }
 
