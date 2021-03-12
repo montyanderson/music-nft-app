@@ -13,7 +13,7 @@
 				</router-link>
 			</p>
 
-			<transition name="connect-anim">
+			<transition name="connect-anim" mode="in-out">
 				<div
 					class="user-detail"
 					v-if="$store.state.walletConnected"
