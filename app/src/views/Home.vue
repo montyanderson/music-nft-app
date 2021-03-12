@@ -14,8 +14,9 @@
 }
 
 .releases {
-	margin-top: 5rem;
-	position: relative;
+	margin-top: 1rem;
+  position: relative;
+
 	width: 95vw;
 	display: table;
 	margin-left: 4.9vw;
@@ -34,6 +35,7 @@
 
 .release img {
 	width: calc(23vw - 2.8vw);
+	margin-top: 30px;
 }
 
 .header {
@@ -45,9 +47,19 @@
 }
 
 .name {
-	font-size: 1.5rem;
+	font-size: 30px;
 	text-align: left;
 	margin-top: 1rem;
+}
+.artist{
+	font-size: 15px;
+	margin-top: 2px;
+}
+
+.available{
+	margin-top: 20px;
+	font-size: 17px;
+	color: #878787;
 }
 
 @media only screen and (max-width: 1150px) {
