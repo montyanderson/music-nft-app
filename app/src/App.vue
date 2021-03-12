@@ -2,37 +2,43 @@
 	<div id="app">
 		<nav>
 			<p class="all-releases">
-				<router-link to="/">
+				<router-link to="/" exact>
 					All Releases
 				</router-link>
 			</p>
 
 			<p class="my-releases">
-				<router-link to="/">
+				<router-link to="/re" exact>
 					My Releases
 				</router-link>
 			</p>
-
-			<div class="user-detail" v-if="$store.state.walletConnected">
-				<div class="wallet">
-					<div class="wallet-value">
-						{{ ($store.state.balance / 10e17).toFixed(2) }}
-						<span class="eth-eth">ETH</span>
+			<transition name="connect-anim">
+				<div
+					class="user-detail"
+					v-if="$store.state.walletConnected"
+					key="connect-anim-1"
+				>
+					<div class="wallet">
+						<div class="wallet-value">
+							{{ ($store.state.balance / 10e17).toFixed(2) }}
+							<span class="eth-eth">ETH</span>
+						</div>
+						<div class="wallet-id">
+							{{ $store.state.address.slice(0, 12) }}
+						</div>
 					</div>
-					<div class="wallet-id">
-						{{ $store.state.address.slice(0, 12) }}
-					</div>
+					<div class="ball"></div>
 				</div>
-				<div class="ball"></div>
-			</div>
 
-			<div
-				class="connectBtn"
-				v-else
-				v-on:click="$store.dispatch('connectWallet')"
-			>
-				<h2 class="connectText">Connect to a wallet</h2>
-			</div>
+				<div
+					class="connectBtn"
+					key="connect-anim-2"
+					v-else
+					v-on:click="$store.dispatch('connectWallet')"
+				>
+					<h2 class="connectText">Connect to a wallet</h2>
+				</div>
+			</transition>
 		</nav>
 
 		<main>
@@ -47,6 +53,14 @@
 * {
 	margin: 0;
 	padding: 0;
+}
+
+.connect-anim-enter-active,
+.connect-anim-leave-active {
+	transition: opacity 0.4s;
+}
+.connect-anim-enter, .connect-anim-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	opacity: 0;
 }
 
 #app {
@@ -81,7 +95,7 @@ a {
 	z-index: +1;
 	cursor: pointer;
 	border: none;
-	color: #d4d4d4;
+	color: #929292;
 }
 
 .my-releases {
@@ -91,7 +105,7 @@ a {
 	z-index: +1;
 	cursor: pointer;
 	border: none;
-	color: #d4d4d4;
+	color: #929292;
 }
 
 main {
@@ -181,6 +195,10 @@ main {
 	height: 55px;
 	background: linear-gradient(57.71deg, #89aaff 6.65%, #2864ff 86.64%);
 	border-radius: 200px;
+}
+.active {
+	transition: color 1s;
+	color: #608dff !important;
 }
 </style>
 
