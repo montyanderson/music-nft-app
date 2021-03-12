@@ -15,7 +15,7 @@ const routes = [
 		path: "/release/:id",
 		name: "Release",
 		component: Release
-	},	
+	}
 ];
 
 const router = new VueRouter({

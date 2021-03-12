@@ -16,45 +16,50 @@
 
 		<table class="tracklist">
 			<tr class="track-header">
-				<th >#</th>
+				<th>#</th>
 				<th>TITLE</th>
-
 			</tr>
 
-			<tr v-for="(track, index) in release.tracks" v-bind:key="index" class="track">
+			<tr
+				v-for="(track, index) in release.tracks"
+				v-bind:key="index"
+				class="track"
+			>
 				<td>{{ index + 1 }}</td>
 				<td>{{ track.name }}</td>
 			</tr>
 		</table>
+
 		<div class="sidebar">
 			<div class="buy-container">
 				<div class="line-wrapper">
-					<p class="eth">0.01 <p class="eth-eth eth">&nbsp; ETH</p></p>
-					<p class="available">{{release.availableCopies}} available</p>
+					<p class="eth">0.01</p>
+					<p class="eth-eth eth">&nbsp; ETH</p>
+					<p class="available">
+						{{ release.availableCopies }} available
+					</p>
 				</div>
 				<div class="currency-wrapper">
 					<p class="dollar">$18.37</p>
-					<p class="supply">{{release.totalCopies}} in supply</p>
+					<p class="supply">{{ release.totalCopies }} in supply</p>
 				</div>
 				<div class="btn-cont">
-				<button class="btn-a" v-on:click="buy">Buy now</button>
+					<button class="btn-a" v-on:click="buy">Buy now</button>
 
-				<p class="own-warning" v-if="release.availableCopies === 0">sold out</p>
-				<p class="own-warning" v-else>You already own 1 of these!</p>
-
-
+					<p class="own-warning" v-if="release.availableCopies === 0">
+						sold out
+					</p>
+					<p class="own-warning" v-else>
+						You already own 1 of these!
+					</p>
 				</div>
-				
 			</div>
 			<div class="owner-container">
-			<h3>Owners</h3>
-			<div class="owners">
-				<p v-for="owner in release.owners">{{owner.address}}</p>
+				<h3>Owners</h3>
+				<div class="owners">
+					<p v-for="owner in release.owners">{{ owner.address }}</p>
+				</div>
 			</div>
-			</div>
-
-
-			
 		</div>
 	</div>
 </template>
@@ -87,15 +92,13 @@ export default {
 </script>
 
 <style scoped>
-
-
 /* stuff inside  owner section */
 .owners {
-		margin-top: 29px;
+	margin-top: 29px;
 	margin-left: 24px;
 }
 .owners p {
-		font-size: 10px;
+	font-size: 10px;
 	overflow: hidden;
 }
 
@@ -105,9 +108,9 @@ export default {
 	background-color: #282626;
 	border-radius: 15px;
 	margin-bottom: 20px;
-	background-color: rgb(40,38,38, 0.3);
-	border: 1px solid rgb(74,74,74,0.3);
-	
+	background-color: rgb(40, 38, 38, 0.3);
+	border: 1px solid rgb(74, 74, 74, 0.3);
+
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 20px;
@@ -129,7 +132,7 @@ h3 {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-		margin-top: 47px;
+	margin-top: 47px;
 }
 .btn-a {
 	font-size: 18px;
@@ -138,8 +141,9 @@ h3 {
 	cursor: pointer;
 	border: none;
 	color: white;
-	background: linear-gradient(262.53deg, #608DFF 3.6%, #3F74FB 100%);
-	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134AD3, inset 0px 0px 10px #3F74FB;
+	background: linear-gradient(262.53deg, #608dff 3.6%, #3f74fb 100%);
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134ad3,
+		inset 0px 0px 10px #3f74fb;
 	border-radius: 120px;
 }
 .supply {
@@ -175,7 +179,6 @@ h3 {
 .eth {
 	font-size: 32px;
 	font-weight: bold;
-
 }
 .buy-container {
 	align-self: center;
@@ -184,8 +187,8 @@ h3 {
 	width: 310px;
 	height: 305px;
 	border-radius: 15px;
-	background-color: rgb(40,38,38, 0.3);
-	border: 1px solid rgb(74,74,74,0.3);
+	background-color: rgb(40, 38, 38, 0.3);
+	border: 1px solid rgb(74, 74, 74, 0.3);
 }
 
 /* stuff inside buy button */
@@ -194,7 +197,6 @@ h3 {
 .wallet-id {
 	margin-left: 32px;
 	margin-top: 3px;
-
 }
 .wallet-value {
 	margin-top: 14px;
@@ -204,7 +206,7 @@ h3 {
 	font-size: 20px;
 	line-height: 24px;
 }
-.eth-eth  {
+.eth-eth {
 	margin-left: 4px;
 	font-weight: 200;
 }
@@ -270,10 +272,13 @@ a {
 	margin-top: 17px;
 }
 
-
 .btn-a:disabled {
-background: linear-gradient(180deg, rgba(96, 141, 255, 0.5) 0%, rgba(23, 23, 23, 0) 100%);
-box-shadow: none;
+	background: linear-gradient(
+		180deg,
+		rgba(96, 141, 255, 0.5) 0%,
+		rgba(23, 23, 23, 0) 100%
+	);
+	box-shadow: none;
 }
 
 .btn-b {
@@ -287,10 +292,11 @@ box-shadow: none;
 	position: relative;
 	border-radius: 120px;
 
-background: linear-gradient(262.53deg, #608DFF 3.6%, #3F74FB 100%);
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134AD3, inset 0px 0px 10px #3F74FB;
-border-radius: 120px;
-border-radius: 120px;
+	background: linear-gradient(262.53deg, #608dff 3.6%, #3f74fb 100%);
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134ad3,
+		inset 0px 0px 10px #3f74fb;
+	border-radius: 120px;
+	border-radius: 120px;
 }
 .btn-a span {
 	font-size: 18px;
@@ -313,7 +319,6 @@ border-radius: 120px;
 	border-collapse: collapse;
 }
 
-
 .track-header {
 	height: 80px;
 }
@@ -329,14 +334,12 @@ border-radius: 120px;
 }
 
 .track:first-child {
-  border-top: none;
+	border-top: none;
 }
 .track:last-child {
-  border-bottom: none;
+	border-bottom: none;
 }
 /* track list */
 
 /* main release page items */
-
-
 </style>
