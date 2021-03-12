@@ -29,7 +29,7 @@
 		<div class="sidebar">
 			<div class="buy-container">
 				<div class="line-wrapper">
-					<p class="eth">0.01 <p class="eth-eth eth">ETH</p></p>
+					<p class="eth">0.01 <p class="eth-eth eth">&nbsp; ETH</p></p>
 					<p class="available">{{release.availableCopies}} available</p>
 				</div>
 				<div class="currency-wrapper">
@@ -105,7 +105,9 @@ export default {
 	background-color: #282626;
 	border-radius: 15px;
 	margin-bottom: 20px;
-
+	background-color: rgb(40,38,38, 0.3);
+	border: 1px solid rgb(74,74,74,0.3);
+	
 	display: flex;
 	flex-direction: column;
 
@@ -131,8 +133,8 @@ h3 {
 }
 .btn-a {
 	font-size: 18px;
-	width: 206px;
-	height: 60px;
+	width: 201px;
+	height: 55px;
 	cursor: pointer;
 	border: none;
 	color: white;
@@ -173,6 +175,7 @@ h3 {
 .eth {
 	font-size: 32px;
 	font-weight: bold;
+
 }
 .buy-container {
 	align-self: center;
@@ -180,9 +183,9 @@ h3 {
 	margin-bottom: 20px;
 	width: 310px;
 	height: 305px;
-	background-color: #282626;
 	border-radius: 15px;
-	;
+	background-color: rgb(40,38,38, 0.3);
+	border: 1px solid rgb(74,74,74,0.3);
 }
 
 /* stuff inside buy button */
@@ -202,6 +205,7 @@ h3 {
 	line-height: 24px;
 }
 .eth-eth  {
+	margin-left: 4px;
 	font-weight: 200;
 }
 
@@ -222,11 +226,11 @@ h3 {
 .outer-container {
 	display: flex;
 	flex-direction: row;
-	margin-top: 30px;
+	margin-top: 0px;
 }
 .outer-container img {
-	width: 320px;
-	height: 320px;
+	width: 290px;
+	height: 290px;
 	margin-top: 54px;
 	margin-left: 62px;
 }
@@ -238,7 +242,7 @@ h3 {
 }
 h1 {
 	font-weight: bold;
-	font-size: 70px;
+	font-size: 55px;
 }
 h2 {
 	color: #b7b7b7;
@@ -267,8 +271,8 @@ box-shadow: none;
 }
 
 .btn-b {
-	width: 170px;
-	height: 62px;
+	width: 160px;
+	height: 52px;
 	border: none;
 	color: #ffffff;
 	font-size: 18px;
