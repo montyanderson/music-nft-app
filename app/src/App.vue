@@ -76,7 +76,7 @@ a {
 
 .all-releases {
 	position: fixed;
-	right: 400px;
+	right: 540px;
 	top: 32px;
 	z-index: +1;
 	cursor: pointer;
@@ -86,7 +86,7 @@ a {
 
 .my-releases {
 	position: fixed;
-	right: 260px;
+	right: 400px;
 	top: 32px;
 	z-index: +1;
 	cursor: pointer;
@@ -102,9 +102,10 @@ main {
 
 .connectBtn {
 	position: fixed;
-	width: 200px;
-	height: 62px;
-	right: 10px;
+	width: 210px;
+	height: 65px;
+	right: 23px;
+
 	top: 10px;
 	z-index: +1;
 	cursor: pointer;
@@ -139,11 +140,12 @@ main {
 
 .user-detail {
 	position: fixed;
-	right: 10px;
+	right: 23px;
 	top: 10px;
-
-	width: 239px;
-	height: 73px;
+	display: flex;
+	align-items: center;
+	width: 210px;
+	height: 65px;
 	border-radius: 300px;
 	background-color: #282626;
 	margin-left: auto;
@@ -154,12 +156,12 @@ main {
 /* stuff inside sidebar */
 .wallet-id {
 	margin-left: 32px;
-	margin-top: 40px;
+	margin-top: 2px;
 	position: absolute;
 }
 .wallet-value {
 	position: absolute;
-	margin-top: 14px;
+	top: 10px;
 	margin-left: 32px;
 	margin-bottom: 5px;
 	font-weight: bold;
@@ -173,11 +175,10 @@ main {
 
 .ball {
 	position: absolute;
-	top: 5px;
-	right: 5px;
+	right: 4.5px;
 
-	width: 63px;
-	height: 63px;
+	width: 55px;
+	height: 55px;
 	background: linear-gradient(57.71deg, #89aaff 6.65%, #2864ff 86.64%);
 	border-radius: 200px;
 }
