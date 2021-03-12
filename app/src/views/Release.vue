@@ -98,10 +98,10 @@ export default {
 		font-size: 10px;
 	overflow: hidden;
 }
+
 .owner-container {
 	align-self: center;
 	width: 310px;
-	height: 262px;
 	background-color: #282626;
 	border-radius: 15px;
 	margin-bottom: 20px;
@@ -110,7 +110,7 @@ export default {
 	
 	display: flex;
 	flex-direction: column;
-
+	padding-bottom: 20px;
 }
 h3 {
 	margin-top: 31px;
@@ -218,6 +218,12 @@ h3 {
 	top: 0;
 	background: #171717;
 	right: 0;
+}
+
+.owners p {
+	font-family: "Roboto Mono", monospace;
+	font-size: 10px;
+	margin-bottom: 5px;
 }
 /* stuff inside sidebar */
 
