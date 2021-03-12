@@ -12,6 +12,7 @@
 					My Releases
 				</router-link>
 			</p>
+
 			<transition name="connect-anim">
 				<div
 					class="user-detail"
@@ -197,7 +198,6 @@ main {
 	border-radius: 200px;
 }
 .active {
-	transition: color 1s;
 	color: #608dff !important;
 }
 </style>
