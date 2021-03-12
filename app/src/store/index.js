@@ -103,16 +103,20 @@ async function getRelease(releaseId) {
 	const availableCopies = Number(_availableCopies);
 	const totalCopies = Number(_totalCopies);
 
-	const owners = (await Promise.all([...Array(totalCopies).keys()].map(async i => {
-		try {
-			return {
-				tokenId: tokenId + i,
-				address: await ocean.methods.ownerOf(tokenId + i).call()
-			};
-		} catch(err) {
-			return null;
-		}
-	}))).filter(address => address !== null);
+	const owners = (
+		await Promise.all(
+			[...Array(totalCopies).keys()].map(async i => {
+				try {
+					return {
+						tokenId: tokenId + i,
+						address: await ocean.methods.ownerOf(tokenId + i).call()
+					};
+				} catch (err) {
+					return null;
+				}
+			})
+		)
+	).filter(address => address !== null);
 
 	console.log({ metadataUri, availableCopies, price });
 
@@ -185,12 +189,10 @@ export default new Vuex.Store({
 
 			const releasesCache = localStorage.getItem("releases-cache");
 
-			if(typeof releasesCache === "string") {
+			if (typeof releasesCache === "string") {
 				commit("setReleases", JSON.parse(releasesCache));
 				commit("finishLoading");
 			}
-
-			
 
 			let totalReleases = Number(
 				await ocean.methods.getReleaseSupply().call()
@@ -220,9 +222,7 @@ export default new Vuex.Store({
 			// await window.ethereum.enable();
 			await window.ethereum.enable();
 
-			ocean.setProvider(
-				window.ethereum
-			);
+			ocean.setProvider(window.ethereum);
 
 			const eth = new Eth(window.ethereum);
 
@@ -244,23 +244,25 @@ export default new Vuex.Store({
 			);
 
 			const tokenId = await (async () => {
-				for(let i = 0; i < totalCopies; i++) {
+				for (let i = 0; i < totalCopies; i++) {
 					try {
-						await ocean.methods.ownerOf(baseTokenId + i).call()
-					} catch(err) {
+						await ocean.methods.ownerOf(baseTokenId + i).call();
+					} catch (err) {
 						return baseTokenId + i;
 					}
 				}
 			})();
 
-			console.log('buy', {tokenId});
+			console.log("buy", { tokenId });
 
 			const tx = ocean.methods.buyToken(tokenId).send({
 				from: window.ethereum.selectedAddress,
 				value: await ocean.methods.getPrice(tokenId).call()
 			});
 
-			const receipt = await new Promise(resolve => tx.once('receipt', resolve));
+			const receipt = await new Promise(resolve =>
+				tx.once("receipt", resolve)
+			);
 			console.log({ receipt });
 
 			await dispatch("getReleases");
