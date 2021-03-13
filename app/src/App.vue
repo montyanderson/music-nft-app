@@ -173,6 +173,7 @@ main {
 	margin-left: 32px;
 	margin-top: 2px;
 	position: absolute;
+	font-family: monospace;
 }
 .wallet-value {
 	position: absolute;
