@@ -1,4 +1,5 @@
 import S3 from "aws-sdk/clients/s3";
+import url from "url";
 
 async function getCredentialsFromAccess(access_grant) {
 	const storedCredentials = localStorage.getItem(`access:${access_grant}`);
