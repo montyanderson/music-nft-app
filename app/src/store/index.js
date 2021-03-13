@@ -6,6 +6,11 @@ import Web3WsProvider from "web3-providers-ws";
 import Eth from "web3-eth";
 import S3 from "aws-sdk/clients/s3";
 import abi from "../abi.json";
+import price from "../lib/price.js";
+
+(async () => {
+	console.log(await price.getUSD());
+})();
 
 // Contract.setProvider(web3.currentProvider);
 Contract.setProvider(
@@ -166,7 +171,8 @@ export default new Vuex.Store({
 		releasesLoading: true,
 		walletConnected: false,
 		address: "",
-		balance: ""
+		balance: "",
+		ethPrice: null
 	},
 	mutations: {
 		setReleases(state, releases) {
@@ -181,6 +187,10 @@ export default new Vuex.Store({
 			state.walletConnected = true;
 			state.address = address;
 			state.balance = balance;
+		},
+
+		setEthPrice(state, ethPrice) {
+			state.ethPrice = ethPrice;
 		}
 	},
 	actions: {
@@ -266,6 +276,10 @@ export default new Vuex.Store({
 			console.log({ receipt });
 
 			await dispatch("getReleases");
+		},
+
+		async getPrice({ commit }) {
+			commit("setEthPrice", await price.getUSD());
 		}
 	},
 	modules: {}

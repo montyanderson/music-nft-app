@@ -206,6 +206,7 @@ main {
 export default {
 	created() {
 		this.$store.dispatch("getReleases");
+		this.$store.dispatch("getPrice");
 	}
 };
 </script>

@@ -33,14 +33,14 @@
 		<div class="sidebar">
 			<div class="buy-container">
 				<div class="line-wrapper">
-					<p class="eth">0.01</p>
+					<p class="eth">{{ ethPrice }}</p>
 					<p class="eth-eth eth">&nbsp; ETH</p>
 					<p class="available">
 						{{ release.availableCopies }} available
 					</p>
 				</div>
 				<div class="currency-wrapper">
-					<p class="dollar">$18.37</p>
+					<p class="dollar">${{ usdPrice }}</p>
 					<p class="supply">{{ release.totalCopies }} in supply</p>
 				</div>
 				<div class="btn-cont">
@@ -75,6 +75,12 @@ export default {
 			return this.$store.state.releases.find(
 				release => String(release.id) === this.$route.params.id
 			);
+		},
+		ethPrice() {
+			return this.release.price / 2e17;
+		},
+		usdPrice() {
+			return (this.ethPrice * this.$store.state.ethPrice).toFixed(2);
 		},
 		releasesLoading() {
 			return this.$store.state.releasesLoading;
