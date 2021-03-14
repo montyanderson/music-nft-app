@@ -5,6 +5,7 @@ import Eth from "web3-eth";
 import { ocean } from "../lib/contract.js";
 import price from "../lib/price.js";
 import { getRelease, getAvailableToken } from "../lib/release.js";
+import player from "./player.js";
 
 Vue.use(Vuex);
 
@@ -111,5 +112,7 @@ export default new Vuex.Store({
 			commit("setEthPrice", await price.getUSD());
 		}
 	},
-	modules: {}
+	modules: {
+		player
+	}
 });

@@ -59,7 +59,7 @@
 				<h3>Owners</h3>
 				<div class="owners">
 					<p v-if="release.owners.length === 0">no ones owns this yet :(<p>
-					<p v-for="owner in release.owners" v-bind:key="owner.address">{{ owner.address }}</p>
+					<p v-for="owner in release.owners">{{ owner.address }}</p>
 				</div>
 			</div>
 		</div>
@@ -68,9 +68,6 @@
 
 <script>
 export default {
-	data: () => ({
-		audio: new Audio()
-	}),
 	computed: {
 		release() {
 			if (this.releasesLoading === true) {
@@ -99,8 +96,10 @@ export default {
 			await this.$store.dispatch("buy", this.release.id);
 		},
 		async play(track) {
-			this.audio.src = track.url;
-			this.audio.play();
+			this.$store.commit("player/start", {
+				playlist: this.release.tracks,
+				index: this.release.tracks.indexOf(track)
+			});
 		}
 	}
 };

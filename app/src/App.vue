@@ -47,6 +47,8 @@
 				<router-view></router-view>
 			</transition>
 		</main>
+
+		
 	</div>
 </template>
 
@@ -208,6 +210,7 @@ export default {
 	created() {
 		this.$store.dispatch("getReleases");
 		this.$store.dispatch("getPrice");
+		this.$store.dispatch("player/init");
 	}
 };
 </script>
