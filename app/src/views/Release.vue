@@ -58,7 +58,8 @@
 			<div class="owner-container">
 				<h3>Owners</h3>
 				<div class="owners">
-					<p v-for="owner in release.owners">{{ owner.address }}</p>
+					<p v-if="release.owners.length === 0">no ones owns this yet :(<p>
+					<p v-for="owner in release.owners" v-bind:key="owner.address">{{ owner.address }}</p>
 				</div>
 			</div>
 		</div>
@@ -243,8 +244,7 @@ h3 {
 }
 /* stuff inside sidebar */
 
-/* main release page items */
-
+/* main release page items */ 
 .outer-container {
 	display: flex;
 	flex-direction: row;
