@@ -2,7 +2,6 @@ export default {
     namespaced: "true",
     state: {
         audio: new Audio(),
-        progress: '',
         playlist: [],
         index: 0,
         isPlaying: false,
