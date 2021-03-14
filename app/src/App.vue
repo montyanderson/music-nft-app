@@ -48,9 +48,25 @@
 			</transition>
 		</main>
 
+		<player></player>
 		
 	</div>
 </template>
+
+<script>
+import Player from "./components/Player.vue";
+
+export default {
+	created() {
+		this.$store.dispatch("getReleases");
+		this.$store.dispatch("getPrice");
+		this.$store.dispatch("player/init");
+	},
+	components: {
+		Player
+	}
+};
+</script>
 
 <style>
 * {
@@ -204,13 +220,3 @@ main {
 	color: #608dff !important;
 }
 </style>
-
-<script>
-export default {
-	created() {
-		this.$store.dispatch("getReleases");
-		this.$store.dispatch("getPrice");
-		this.$store.dispatch("player/init");
-	}
-};
-</script>

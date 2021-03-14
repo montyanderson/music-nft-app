@@ -61,7 +61,9 @@ async function getRelease(releaseId) {
 
 	const tracks = await Promise.all(metadata.tracks.map(async track => ({
 		...track,
-		url: await getUrlFromStorjUri(url.resolve(metadataUri, track.file))
+		imageUrl,
+		artist: metadata.artist,
+		url: await getUrlFromStorjUri(url.resolve(metadataUri, track.file)),
 	})));
 
 	const release = {

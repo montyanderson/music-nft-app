@@ -10,10 +10,10 @@ export default {
     },
     getters: {
         track(state) {
-            state.playlist[state.index % state.playlist.length];
+            return state.playlist[state.index % state.playlist.length];
         },
         progress(state) {
-            return (currentTime / duration) * 100;
+            return (state.currentTime / state.duration) * 100;
         }
     },
     mutations: {
