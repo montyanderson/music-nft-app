@@ -27,6 +27,7 @@
 			>
 				<td>{{ index + 1 }}</td>
 				<td>{{ track.name }}</td>
+				<td v-on:click="play(track)">Play</td>
 			</tr>
 		</table>
 
@@ -66,6 +67,9 @@
 
 <script>
 export default {
+	data: () => ({
+		audio: new Audio()
+	}),
 	computed: {
 		release() {
 			if (this.releasesLoading === true) {
@@ -92,6 +96,10 @@ export default {
 	methods: {
 		async buy() {
 			await this.$store.dispatch("buy", this.release.id);
+		},
+		async play(track) {
+			this.audio.src = track.url;
+			this.audio.play();
 		}
 	}
 };
