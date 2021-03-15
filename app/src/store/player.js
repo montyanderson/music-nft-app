@@ -69,8 +69,8 @@ export default {
 		},
 
 		setProgress(state, { duration, currentTime }) {
-			state.duration = duration;
-			state.currentTime = currentTime;
+			state.duration = duration ;
+			state.currentTime = currentTime = Math.floor(currentTime * 100) / 100;;
 		}
 	},
 	actions: {
