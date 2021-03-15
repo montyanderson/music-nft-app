@@ -16,7 +16,7 @@ export default {
 		},
 		progress(state) {
 			return (state.currentTime / state.duration) * 100;
-		}
+		},
 	},
 	mutations: {
 		start(state, { playlist, index }) {
