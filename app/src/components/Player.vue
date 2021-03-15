@@ -52,7 +52,9 @@
 
 		<div class="name">{{ track.name }}</div>
 		<div class="artist">{{ track.artist }}</div>
-		<div class="img"><img :src="{}" alt="" /></div>
+		<div class="img">
+			<img v-if="track && track.imageUrl" :src="track.imageUrl" alt="" />
+		</div>
 	</div>
 </template>
 
@@ -149,7 +151,7 @@ progress {
 	transform: translate(-50%, -50%);
 }
 
-.img {
+.img img {
 	width: 90px;
 	height: 90px;
 	background: grey;
