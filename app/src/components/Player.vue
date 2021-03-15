@@ -2,7 +2,12 @@
 	<div class="player-container">
 		<div class="playbtn" @click="pausePlay">
 			<h3 class="play-fill" v-if="isPlaying">
-				<svg
+				<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+  <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+</svg>
+			</h3>
+			<h3 class="play-fill" v-else id="play-fill">
+			<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="22"
 					height="22"
@@ -13,10 +18,7 @@
 					<path
 						d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
 					/>
-				</svg>
-			</h3>
-			<h3 class="play-fill" v-else>
-				p
+				</svg>	
 			</h3>
 		</div>
 		<div class="forward" @click="forward">
@@ -48,11 +50,31 @@
 			</svg>
 		</div>
 
-		<progress max="100" :value="progress"> </progress>
 
+<input
+  type="range"
+  class="progress-bar"
+  min="0"
+  max="100"
+  :value="progress"
+/>
+
+<div class="volumeicon">
+	<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-volume-down-fill" viewBox="0 0 16 16">
+  <path d="M9 4a.5.5 0 0 0-.812-.39L5.825 5.5H3.5A.5.5 0 0 0 3 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 9 12V4zm3.025 4a4.486 4.486 0 0 1-1.318 3.182L10 10.475A3.489 3.489 0 0 0 11.025 8 3.49 3.49 0 0 0 10 5.525l.707-.707A4.486 4.486 0 0 1 12.025 8z"/>
+</svg>
+</div>
+<input
+  type="range"
+  class="volume"
+  min="0"
+  max="100"
+/>
 		<div class="name">{{ track.name }}</div>
 		<div class="artist">{{ track.artist }}</div>
 		<img  class="img" v-if="track && track.imageUrl" :src="track.imageUrl" alt="">
+		<div class="current-time">{{ currentTime }}</div>
+		<div class="duration">{{ duration }}</div>
 	</div>
 </template>
 
@@ -81,14 +103,15 @@ export default {
 			return this.$store.state.player.isPlaying;
 		},
 		duration() {
-			return this.$store.state.player.duration;
+			return this.$store.state.player.duration.toFixed() - this.currentTime;
 		},
 		currentTime() {
-			return this.$store.state.player.currentTime;
+			return this.$store.state.player.currentTime.toFixed();
 		},
 		progress() {
 			return this.$store.getters["player/progress"];
-		}
+		},
+
 	}
 };
 </script>
@@ -120,8 +143,14 @@ export default {
 	color: black;
 
 	top: 55%;
-	left: 51%;
+	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+#play-fill{
+	position: absolute;
+	left: 51%;
+		transform: translate(-50%, -50%);
 }
 
 .forward {
@@ -143,11 +172,113 @@ export default {
 }
 
 progress {
-	position: relative;
-	top: 100px;
+	
+
+ 
+}
+
+
+
+
+.progress-bar {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+   
+    background: #131313;
+    border-radius: 30px;
+   
+  position: relative;
+	top: 90px;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	width: 440px;
 }
+
+.progress-bar::-webkit-slider-runnable-track {
+    overflow: hidden;
+  }  
+
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -3px;
+    margin-left: 0px;
+    height: 10px;
+    width: 7px;
+    border: 0;
+ box-shadow: -440px 0 0 440px #608DFF;
+    background:none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+
+.progress-bar::-webkit-slider-runnable-track {
+    appearance: none;
+    cursor: pointer;
+    max-height: 5px;
+    border-radius: 30px;
+}
+
+
+.progress-bar:focus {
+    outline: none;
+}
+
+
+.volumeicon{
+position:absolute;
+  top: 51.5%;
+  right: 200px;
+transform: translate(-50%, -50%);
+color: #878787	
+}
+
+.volume {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+   
+    background: #131313;
+    border-radius: 30px;
+   
+  position:absolute;
+  top: 50%;
+  right: 50px;
+transform: translate(-50%, -50%);
+	width: 100px;
+}
+
+.volume::-webkit-slider-runnable-track {
+    overflow: hidden;
+  }  
+
+.volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -3px;
+    margin-left: 0px;
+    height: 10px;
+    width: 7px;
+    border: 0;
+ box-shadow: -440px 0 0 440px #608DFF;
+    background:none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+
+.volume::-webkit-slider-runnable-track {
+    appearance: none;
+    cursor: pointer;
+    max-height: 5px;
+    border-radius: 30px;
+}
+
+
+.volume:focus {
+    outline: none;
+}
+
 
 .img {
 	width: 90px;
@@ -170,5 +301,19 @@ progress {
 	font-size: 13px;
 	margin-left: 125px;
 	margin-top: 6px;
+}
+.current-time {
+	font-size: 13px;
+	position: absolute;
+	top: 100px;
+	left: calc(50% - 240px);
+	transform: translate(-50%, -50%);
+}
+.duration {
+	font-size: 13px;
+position: absolute;
+	top: 100px;
+	left: calc(50% + 240px);
+	transform: translate(-50%, -50%);
 }
 </style>
