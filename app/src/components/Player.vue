@@ -48,11 +48,11 @@
 			</svg>
 		</div>
 
-		<progress> </progress>
+		<progress max="100" :value="progress"> </progress>
 
 		<div class="name">{{ track.name }}</div>
 		<div class="artist">{{ track.artist }}</div>
-		<div class="img"><img :src="{}" alt="" /></div>
+		<img  class="img" v-if="track && track.imageUrl" :src="track.imageUrl" alt="">
 	</div>
 </template>
 

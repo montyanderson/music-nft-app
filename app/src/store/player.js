@@ -10,7 +10,9 @@ export default {
 	},
 	getters: {
 		track(state) {
-			return state.playlist[state.index % state.playlist.length];
+			return state.playlist[
+				Math.abs(state.index % state.playlist.length)
+			];
 		},
 		progress(state) {
 			return (state.currentTime / state.duration) * 100;
@@ -19,10 +21,14 @@ export default {
 	mutations: {
 		start(state, { playlist, index }) {
 			state.playlist = playlist;
-			state.track = playlist[index];
+			state.index = index;
 
 			state.audio.volume = 0.1;
-			state.audio.src = playlist[index].url;
+
+			state.audio.src = state.playlist[
+				Math.abs(state.index % state.playlist.length)
+			].url;
+
 			state.audio.play();
 
 			state.isPlaying = true;
@@ -42,7 +48,10 @@ export default {
 			state.index++;
 
 			state.audio.src =
-				state.playlist[state.index % state.playlist.length].url;
+				state.playlist[
+					Math.abs(state.index % state.playlist.length)
+				].url;
+
 			state.audio.play();
 			state.isPlaying = true;
 		},
@@ -54,6 +63,7 @@ export default {
 				state.playlist[
 					Math.abs(state.index % state.playlist.length)
 				].url;
+
 			state.audio.play();
 			state.isPlaying = true;
 		},
@@ -64,7 +74,7 @@ export default {
 		}
 	},
 	actions: {
-		init({ state, commit }) {
+		init({ state, commit, dispatch }) {
 			window.audio = state.audio;
 
 			state.audio.addEventListener("ended", function() {
@@ -72,17 +82,21 @@ export default {
 			});
 
 			setInterval(() => {
-				const { duration, currentTime } = audio;
+				dispatch("updateProgress");
+			}, 100);
+		},
 
-				if (isNaN(duration) || isNaN(currentTime)) {
-					return;
-				}
+		updateProgress({ state, commit }) {
+			const { duration, currentTime } = state.audio;
 
-				commit("setProgress", {
-					duration,
-					currentTime
-				});
-			}, 500);
+			if (isNaN(duration) || isNaN(currentTime)) {
+				return;
+			}
+
+			commit("setProgress", {
+				duration,
+				currentTime
+			});
 		}
 	}
 };
