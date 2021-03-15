@@ -93,7 +93,7 @@
 			min="0"
 			step="0.01"
 			ref="volume1"
-			v-on:change="changeVolume()"
+			v-on:input="changeVolume()"
 		/>
 		<div class="name">{{ track.name }}</div>
 		<div class="artist">{{ track.artist }}</div>
