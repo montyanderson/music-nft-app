@@ -1,84 +1,102 @@
 export default {
-    namespaced: "true",
-    state: {
-        audio: new Audio(),
-        playlist: [],
-        index: 0,
-        isPlaying: false,
-        currentTime: 0,
-        duration: 0
-    },
-    getters: {
-        track(state) {
-            return state.playlist[state.index % state.playlist.length];
-        },
-        progress(state) {
-            return (state.currentTime / state.duration) * 100;
-        }
-    },
-    mutations: {
-        start(state, {playlist, index}) {
-            state.playlist = playlist;
-            state.track = playlist[index];
+	namespaced: "true",
+	state: {
+		audio: new Audio(),
+		playlist: [],
+		index: 0,
+		isPlaying: false,
+		currentTime: 0,
+		duration: 0
+	},
+	getters: {
+		track(state) {
+			return state.playlist[
+				Math.abs(state.index % state.playlist.length)
+			];
+		},
+		progress(state) {
+			return (state.currentTime / state.duration) * 100;
+		}
+	},
+	mutations: {
+		start(state, { playlist, index }) {
+			state.playlist = playlist;
+			state.index = index;
 
-            state.audio.volume = 0.1;
-            state.audio.src = playlist[index].url;
-            state.audio.play();
+			state.audio.volume = 0.1;
 
-            state.isPlaying = true;
-        },
+			state.audio.src = state.playlist[
+				Math.abs(state.index % state.playlist.length)
+			].url;
 
-        pause() {
-            state.audio.pause();
-            state.isPlaying = false;
-        },
+			state.audio.play();
 
-        play() {
-            state.audio.play();
-            state.isPlaying = true;
-        },
+			state.isPlaying = true;
+		},
 
-        forward(state) {
-            state.index++;
+		pause(state) {
+			state.audio.pause();
+			state.isPlaying = false;
+		},
 
-            state.audio.src = state.playlist[state.index % state.playlist.length].url;
-            state.audio.play();
-            state.isPlaying = true;
-        },
+		play(state) {
+			state.audio.play();
+			state.isPlaying = true;
+		},
 
-        back() {
-            state.index--;
+		forward(state) {
+			state.index++;
 
-            state.audio.src = state.playlist[state.index % state.playlist.length].url;
-            state.audio.play();
-            state.isPlaying = true;
-        },
+			state.audio.src =
+				state.playlist[
+					Math.abs(state.index % state.playlist.length)
+				].url;
 
-        setProgress(state, { duration, currentTime }) {
-            state.duration = duration;
-            state.currentTime = currentTime;
-        }
-    },
-    actions: {
-        init({state, commit}) {
-            window.audio = state.audio;
+			state.audio.play();
+			state.isPlaying = true;
+		},
 
-            state.audio.addEventListener("ended", function(){
-                commit("forward");
-            });
+		back(state) {
+			state.index--;
 
-            setInterval(() => {
-                const {duration, currentTime} = audio;
+			state.audio.src =
+				state.playlist[
+					Math.abs(state.index % state.playlist.length)
+				].url;
 
-                if(isNaN(duration) || isNaN(currentTime)) {
-                    return;
-                }
+			state.audio.play();
+			state.isPlaying = true;
+		},
 
-                commit("setProgress", {
-                    duration,
-                    currentTime
-                });
-            }, 500);
-        }
-    }
+		setProgress(state, { duration, currentTime }) {
+			state.duration = duration;
+			state.currentTime = currentTime;
+		}
+	},
+	actions: {
+		init({ state, commit, dispatch }) {
+			window.audio = state.audio;
+
+			state.audio.addEventListener("ended", function() {
+				commit("forward");
+			});
+
+			setInterval(() => {
+				dispatch("updateProgress");
+			}, 100);
+		},
+
+		updateProgress({ state, commit }) {
+			const { duration, currentTime } = state.audio;
+
+			if (isNaN(duration) || isNaN(currentTime)) {
+				return;
+			}
+
+			commit("setProgress", {
+				duration,
+				currentTime
+			});
+		}
+	}
 };
