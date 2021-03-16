@@ -33,6 +33,7 @@ export default {
 
 			audio.play();
 
+			state.currentTime = 0;
 			state.isPlaying = true;
 		},
 
@@ -55,6 +56,8 @@ export default {
 				].url;
 
 			audio.play();
+
+			state.currentTime = 0;
 			state.isPlaying = true;
 		},
 
@@ -67,6 +70,8 @@ export default {
 				].url;
 
 			audio.play();
+
+			state.currentTime = 0;
 			state.isPlaying = true;
 		},
 
@@ -95,7 +100,7 @@ export default {
 
 			setInterval(() => {
 				dispatch("updateProgress");
-			}, 1000);
+			}, 100);
 		},
 
 		updateProgress({ state, commit }) {
