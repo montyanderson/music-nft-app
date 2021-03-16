@@ -66,8 +66,8 @@
 			:max="duration"
 			step="0.1"
 			v-model="inputCurrentTime"
-			@mouseup="progressBarClicked = true"
-			@mousedown="progressBarClicked = false"
+			@mouseup="progressBarClicked = false"
+			@mousedown="progressBarClicked = true"
 		/>
 
 		<div class="volumeicon">
@@ -118,12 +118,16 @@ export default {
 			this.$store.commit("player/setVolume", volume);
 		},
 		progressBarClicked(clicked) {
+			console.log({clicked})
+
 			if(clicked === false) {
+				console.log("updating player/setCurrentTime");
 				this.$store.commit("player/setCurrentTime", this.inputCurrentTime);
 			}
 		},
 		currentTime(currentTime) {
 			if(this.progressBarClicked === false) {
+				console.log("updating input current time");
 				this.inputCurrentTime = currentTime;
 			}
 		}
