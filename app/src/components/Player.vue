@@ -63,11 +63,11 @@
 			type="range"
 			class="progress-bar"
 			min="0"
-			max="100"
-			:value="progress"
-			ref="prog"
-			v-on:input="changeProgress()"
+			:max="duration"
 			step="0.1"
+			v-model="inputCurrentTime"
+			@mouseup="progressBarClicked = true"
+			@mousedown="progressBarClicked = false"
 		/>
 
 		<div class="volumeicon">
@@ -87,14 +87,12 @@
 		<input
 			class="volume"
 			type="range"
-			id="vol"
 			value="2"
-			max="10"
+			max="1"
 			min="0"
 			step="0.01"
-			ref="volume1"
-			v-on:input="changeVolume()"
-		/>
+			v-model="inputVolume"
+		>
 		<div class="name">{{ track.name }}</div>
 		<div class="artist">{{ track.artist }}</div>
 		<img
@@ -102,7 +100,7 @@
 			v-if="track && track.imageUrl"
 			:src="track.imageUrl"
 			alt=""
-		/>
+		>
 		<div class="current-time">{{ currentTime | displayTime }}</div>
 		<div class="duration">{{ duration | displayTime }}</div>
 	</div>
@@ -110,6 +108,26 @@
 
 <script>
 export default {
+	data: () => ({
+		inputVolume: 0.1,
+		inputCurrentTime: 0,
+		progressBarClicked: false
+	}),
+	watch: {
+		inputVolume(volume) {
+			this.$store.commit("player/setVolume", volume);
+		},
+		progressBarClicked(clicked) {
+			if(clicked === false) {
+				this.$store.commit("player/setCurrentTime", this.inputCurrentTime);
+			}
+		},
+		currentTime(currentTime) {
+			if(this.progressBarClicked === false) {
+				this.inputCurrentTime = currentTime;
+			}
+		}
+	},
 	methods: {
 		pausePlay() {
 			if (this.isPlaying === true) {
@@ -123,13 +141,6 @@ export default {
 		},
 		back() {
 			this.$store.commit("player/back");
-		},
-		changeVolume() {
-			this.audio.volume = this.$refs.volume1.value / 10;
-		},
-		changeProgress() {
-			let audioTime = (this.$refs.prog.value / 100) * this.audio.duration;
-			this.audio.currentTime = audioTime;
 		}
 	},
 	computed: {
@@ -140,23 +151,33 @@ export default {
 			return this.$store.state.player.isPlaying;
 		},
 		duration() {
-			return (
-				this.$store.state.player.duration.toFixed() - this.currentTime
-			);
+			return this.$store.state.player.duration;
 		},
 		currentTime() {
-			return this.$store.state.player.currentTime.toFixed();
+			return this.$store.state.player.currentTime;
 		},
 		progress() {
 			return this.$store.getters["player/progress"];
 		},
-		audio() {
-			return this.$store.state.player.audio;
+		volume() {
+			return this.$store.state.player.volume;
 		}
 	},
 	filters: {
-		displayTime(seconds) {
-			return `${Math.floor(seconds / 60)}:${Math.floor(seconds % 60)}`;
+		displayTime(totalSeconds) {
+			let minutes = `${Math.floor(totalSeconds / 60)}`;
+			
+			if(minutes.length === 1) {
+				minutes = `0${minutes}`;
+			}
+
+			let seconds = `${Math.floor(totalSeconds % 60)}`;
+
+			if(seconds.length === 1) {
+				seconds = `0${seconds}`;
+			}
+
+			return `${minutes}:${seconds}`;
 		}
 	}
 };
