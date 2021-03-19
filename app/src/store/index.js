@@ -41,12 +41,14 @@ export default new Vuex.Store({
 		async getReleases({ commit, state }) {
 			console.log(ocean);
 
+				/*
 			const releasesCache = localStorage.getItem("releases-cache");
 
 			if (typeof releasesCache === "string") {
 				commit("setReleases", JSON.parse(releasesCache));
 				commit("finishLoading");
 			}
+			*/
 
 			let totalReleases = Number(
 				await ocean.methods.getReleaseSupply().call()

@@ -33,8 +33,9 @@
 	cursor: pointer;
 }
 
-.release img {
+.release .image, .release .image * {
 	width: calc(23vw - 2.8vw);
+	height: calc(23vw - 2.8vw);
 	margin-top: 30px;
 }
 
@@ -72,7 +73,7 @@
 		margin-left: 3.5vw;
 		grid-gap: 3vw;
 	}
-	.release img {
+	.release .image, .release .image * {
 		width: 45vw;
 	}
 	.releaseText {
@@ -88,7 +89,7 @@
 		margin-left: 2.5vw;
 		margin-top: 100px;
 	}
-	.release img {
+	.release .image, .release .image * {
 		width: 90px;
 		margin-top: -70px;
 	}
@@ -124,13 +125,14 @@
 	<div class="home">
 		<h1 class="releaseText">Releases</h1>
 		<div class="header"></div>
-		<div class="releases">
+
+		<div class="releases" v-if="releases.length > 0">
 			<div
 				class="release"
 				v-for="release in releases"
 				v-on:click="goToRelease(release)"
 			>
-				<img v-bind:src="release.imageUrl" />
+				<img class="image" v-bind:src="release.imageUrl" />
 				<p class="name">{{ release.name }}</p>
 				<p class="artist">{{ release.artist }}</p>
 				<p class="available" v-if="release.availableCopies === 0">
@@ -139,6 +141,20 @@
 				<p class="available" v-else>
 					{{ release.availableCopies }} available
 				</p>
+			</div>
+		</div>
+
+		<div class="releases" v-else>
+			<div class="release">
+					<content-placeholders>
+						<div class="image">
+							<content-placeholders-img />
+						</div>
+
+						<p class="name"><content-placeholders-heading /></p>
+
+
+					</content-placeholders>
 			</div>
 		</div>
 	</div>
