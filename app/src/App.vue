@@ -8,7 +8,7 @@
 			</p>
 
 			<p class="my-releases">
-				<router-link to="/re" exact>
+				<router-link to="/my" exact>
 					My Releases
 				</router-link>
 			</p>
