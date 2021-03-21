@@ -153,6 +153,9 @@ export default {
 		myReleases(){
 			return this.releases.filter(release => release.owners.indexOf(this.address) !== -1)
 		},
+		address(){
+			return "fakeaddress"
+		},
 	},
 	methods: {
 		goToRelease({ id }) {
