@@ -86,9 +86,7 @@ export default {
 	watch: {
 		animate: function() {
 			if (this.animate === true) {
-				console.log("dsss");
 				setTimeout(() => {
-					console.log("d");
 					this.animate = false;
 				}, 500);
 			}
