@@ -117,7 +117,7 @@ export default {
 	},
 	methods: {
 		anim() {
-			this.animate = !this.animate;
+			this.animate = true;
 		},
 		async buy() {
 			await this.$store.dispatch("buy", this.release.id);
