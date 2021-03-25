@@ -59,8 +59,8 @@
 						</svg>
 						<svg
 							class="play-hover"
-							width="40"
-							height="40"
+							width="35"
+							height="35"
 							viewBox="0 0 40 40"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
@@ -229,10 +229,6 @@ export default {
 </script>
 
 <style scoped>
-.play-item {
-	z-index: 500000;
-	position: absolute;
-}
 /* anim */
 .confetti-button {
 	cursor: pointer;
@@ -550,8 +546,12 @@ a {
 }
 
 /* track list */
+.play-item {
+	z-index: 500000;
+	position: absolute;
+}
 .activeItem {
-	color: #3f74fb;
+	color: #5a86f5;
 }
 
 .play-track {
