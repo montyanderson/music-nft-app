@@ -29,10 +29,36 @@
 				:class="{ activeItem: hover === index }"
 			>
 				<td v-if="hover === index">
-					<div class="play-track">
+					<div class="play-track" v-on:click="play(track)">
+						<svg
+							v-if="isPlaying"
+							class="play-item"
+							width="8"
+							height="12"
+							viewBox="0 0 8 12"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M8 6L0.5 11.1962L0.500001 0.803847L8 6Z"
+								fill="black"
+							/>
+						</svg>
+						<svg
+							v-else
+							xmlns="http://www.w3.org/2000/svg"
+							width="15"
+							height="15"
+							fill="black"
+							class="play-item"
+							viewBox="0 0 16 16"
+						>
+							<path
+								d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
+							/>
+						</svg>
 						<svg
 							class="play-hover"
-							v-on:click="play(track)"
 							width="40"
 							height="40"
 							viewBox="0 0 40 40"
@@ -42,10 +68,6 @@
 							<g filter="url(#filter0_i)">
 								<circle cx="20" cy="20" r="20" fill="white" />
 							</g>
-							<path
-								d="M25 20L17.5 25.1962L17.5 14.8038L25 20Z"
-								fill="black"
-							/>
 							<defs>
 								<filter
 									id="filter0_i"
@@ -164,6 +186,9 @@ export default {
 		}
 	},
 	computed: {
+		isPlaying() {
+			return this.$store.state.player.isPlaying;
+		},
 		release() {
 			if (this.releasesLoading === true) {
 				return {};
@@ -204,6 +229,10 @@ export default {
 </script>
 
 <style scoped>
+.play-item {
+	z-index: 500000;
+	position: absolute;
+}
 /* anim */
 .confetti-button {
 	cursor: pointer;
@@ -529,11 +558,16 @@ a {
 	position: relative;
 	display: flex;
 	align-items: center;
-	right: 20px;
+	justify-content: center;
+	right: 30px;
+	cursor: pointer;
 }
 
 .play-hover {
 	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .tracklist {
