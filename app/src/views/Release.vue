@@ -218,41 +218,6 @@ export default {
 </script>
 
 <style scoped>
-.info-2 {
-	font-size: 15px;
-	width: 234px;
-	margin-top: 15px;
-	padding-bottom: 58px;
-}
-.info-1 {
-	font-size: 15px;
-	width: 234px;
-	margin-top: 30px;
-}
-.center-cont {
-	align-items: center;
-	display: flex;
-	margin-top: 24px;
-	flex-direction: column;
-}
-.buy-container h5 {
-	margin-top: 17px;
-	margin-left: 40px;
-	font-size: 18px;
-	line-height: 22px;
-	color: #9ca9ac;
-}
-.buy-container h4 {
-	font-weight: 700;
-	font-size: 40px;
-	margin-top: 40px;
-	margin-left: 40px;
-}
-.buy-container span {
-	font-weight: normal;
-	margin-left: 4px;
-}
-
 .confetti-button {
 	cursor: pointer;
 	position: relative;
@@ -387,6 +352,40 @@ export default {
 /* stuff inside buy button */
 
 /* stuff inside sidebar */
+.info-2 {
+	font-size: 15px;
+	width: 234px;
+	margin-top: 15px;
+	padding-bottom: 58px;
+}
+.info-1 {
+	font-size: 15px;
+	width: 234px;
+	margin-top: 30px;
+}
+.center-cont {
+	align-items: center;
+	display: flex;
+	margin-top: 24px;
+	flex-direction: column;
+}
+.buy-container h5 {
+	margin-top: 17px;
+	margin-left: 40px;
+	font-size: 18px;
+	line-height: 22px;
+	color: #9ca9ac;
+}
+.buy-container h4 {
+	font-weight: 700;
+	font-size: 40px;
+	margin-top: 40px;
+	margin-left: 40px;
+}
+.buy-container span {
+	font-weight: normal;
+	margin-left: 4px;
+}
 
 .sidebar {
 	display: flex;
