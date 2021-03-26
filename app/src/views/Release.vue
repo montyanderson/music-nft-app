@@ -14,18 +14,110 @@
 			</div>
 		</div>
 
-		<table class="tracklist">
+		<table class="tracklist" @mouseleave="hover = null">
 			<tr class="track-header">
 				<th>#</th>
 				<th>TITLE</th>
+				<th>TIME</th>
 			</tr>
-
+			<div class="table-spacing"></div>
 			<tr
 				v-for="(track, index) in release.tracks"
 				v-bind:key="index"
 				class="track"
+				@mouseover="hover = index"
+				:class="{ activeItem: hover === index }"
 			>
-				<td>{{ index + 1 }}</td>
+				<td v-if="hover === index">
+					<div class="play-track" v-on:click="play(track)">
+						<svg
+							v-if="isPlaying"
+							class="play-item"
+							width="8"
+							height="12"
+							viewBox="0 0 8 12"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M8 6L0.5 11.1962L0.500001 0.803847L8 6Z"
+								fill="black"
+							/>
+						</svg>
+						<svg
+							v-else
+							xmlns="http://www.w3.org/2000/svg"
+							width="15"
+							height="15"
+							fill="black"
+							class="play-item"
+							viewBox="0 0 16 16"
+						>
+							<path
+								d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
+							/>
+						</svg>
+						<svg
+							class="play-hover"
+							width="35"
+							height="35"
+							viewBox="0 0 40 40"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<g filter="url(#filter0_i)">
+								<circle cx="20" cy="20" r="20" fill="white" />
+							</g>
+							<defs>
+								<filter
+									id="filter0_i"
+									x="0"
+									y="0"
+									width="40"
+									height="40"
+									filterUnits="userSpaceOnUse"
+									color-interpolation-filters="sRGB"
+								>
+									<feFlood
+										flood-opacity="0"
+										result="BackgroundImageFix"
+									/>
+									<feBlend
+										mode="normal"
+										in="SourceGraphic"
+										in2="BackgroundImageFix"
+										result="shape"
+									/>
+									<feColorMatrix
+										in="SourceAlpha"
+										type="matrix"
+										values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+										result="hardAlpha"
+									/>
+									<feOffset />
+									<feGaussianBlur stdDeviation="10" />
+									<feComposite
+										in2="hardAlpha"
+										operator="arithmetic"
+										k2="-1"
+										k3="1"
+									/>
+									<feColorMatrix
+										type="matrix"
+										values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"
+									/>
+									<feBlend
+										mode="normal"
+										in2="shape"
+										result="effect1_innerShadow"
+									/>
+								</filter>
+							</defs>
+						</svg>
+					</div>
+				</td>
+				<td v-else>{{ index + 1 }}</td>
+
 				<td>{{ track.name }}</td>
 				<td v-on:click="play(track)">Play</td>
 			</tr>
@@ -80,6 +172,7 @@
 export default {
 	data() {
 		return {
+			hover: null,
 			animate: false
 		};
 	},
@@ -93,6 +186,9 @@ export default {
 		}
 	},
 	computed: {
+		isPlaying() {
+			return this.$store.state.player.isPlaying;
+		},
 		release() {
 			if (this.releasesLoading === true) {
 				return {};
@@ -450,16 +546,39 @@ a {
 }
 
 /* track list */
+.play-item {
+	z-index: 500000;
+	position: absolute;
+}
+.activeItem {
+	color: #5a86f5;
+}
+
+.play-track {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	right: 30px;
+	cursor: pointer;
+}
+
+.play-hover {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .tracklist {
 	width: calc(90% - 350px);
 	margin-left: 62px;
-	margin-top: 25px;
+
+	margin-top: 56px;
 	border-collapse: collapse;
 }
-
-.track-header {
-	height: 80px;
+.table-spacing {
+	margin-bottom: 20px;
 }
 
 .track {
@@ -472,7 +591,7 @@ a {
 	font-weight: 500;
 }
 
-.track:first-child {
+tr:nth-child(3) {
 	border-top: none;
 }
 .track:last-child {
