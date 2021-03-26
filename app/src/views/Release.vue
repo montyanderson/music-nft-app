@@ -125,18 +125,9 @@
 
 		<div class="sidebar">
 			<div class="buy-container">
-				<div class="line-wrapper">
-					<p class="eth">{{ ethPrice }}</p>
-					<p class="eth-eth eth">&nbsp; ETH</p>
-					<p class="available">
-						{{ release.availableCopies }} available
-					</p>
-				</div>
-				<div class="currency-wrapper">
-					<p class="dollar">${{ usdPrice }}</p>
-					<p class="supply">{{ release.totalCopies }} in supply</p>
-				</div>
-				<div class="btn-cont">
+				<h4>{{ ethPrice }} <span> ETH </span></h4>
+				<h5>${{ usdPrice }}</h5>
+				<div class="center-cont">
 					<button
 						class="btn-a confetti-button"
 						:class="{ animate: animate }"
@@ -145,23 +136,14 @@
 					>
 						Buy now
 					</button>
-
-					<p class="own-warning" v-if="release.availableCopies === 0">
-						sold out
+					<p class="info-1">
+						This is a limited-release digital token, available as an
+						NFT. You can purchase this using Ethereum.
 					</p>
-					<p class="own-warning" v-else>
-						You already own 1 of these!
+					<p class="info-2">
+						Once purchased, it will be available in My Library. It
+						may be available for trade at a future date.
 					</p>
-				</div>
-			</div>
-			<div class="owner-container">
-				<h3>Owners</h3>
-				<div class="owners">
-					<p v-if="release.owners.length === 0">
-						no ones owns this yet :(
-					</p>
-					<p></p>
-					<p v-for="owner in release.owners">{{ owner.address }}</p>
 				</div>
 			</div>
 		</div>
@@ -229,6 +211,50 @@ export default {
 </script>
 
 <style scoped>
+.info-2 {
+	font-size: 15px;
+	width: 234px;
+	margin-top: 15px;
+	padding-bottom: 58px;
+}
+.info-1 {
+	font-size: 15px;
+	width: 234px;
+	margin-top: 30px;
+}
+.center-cont {
+	align-items: center;
+	display: flex;
+	margin-top: 24px;
+	flex-direction: column;
+}
+.buy-container h5 {
+	margin-top: 17px;
+	margin-left: 40px;
+	font-size: 18px;
+	line-height: 22px;
+	color: #9ca9ac;
+}
+.buy-container h4 {
+	font-weight: 700;
+	font-size: 40px;
+	margin-top: 40px;
+	margin-left: 40px;
+}
+.buy-container span {
+	font-weight: normal;
+	margin-left: 4px;
+}
+
+/* ddddd */
+/* <button
+						class="btn-a confetti-button"
+						:class="{ animate: animate }"
+						v-on:click="buy"
+						@click="anim"
+					>
+						Buy now
+					</button> */
 /* anim */
 .confetti-button {
 	cursor: pointer;
@@ -329,47 +355,11 @@ export default {
 /* anim */
 
 /* stuff inside  owner section */
-.owners {
-	margin-top: 29px;
-	margin-left: 24px;
-}
-.owners p {
-	font-size: 10px;
-	overflow: hidden;
-}
 
-.owner-container {
-	align-self: center;
-	width: 310px;
-	background-color: #282626;
-	border-radius: 15px;
-	margin-bottom: 20px;
-	background-color: rgb(40, 38, 38, 0.3);
-	border: 1px solid rgb(74, 74, 74, 0.3);
-
-	display: flex;
-	flex-direction: column;
-	padding-bottom: 20px;
-}
-h3 {
-	margin-top: 31px;
-	margin-left: 24px;
-	font-size: 30px;
-}
 /* stuff inside  owner section */
 
 /* stuff inside buy button */
-.own-warning {
-	margin-top: 42px;
-	font-size: 18px;
-	padding-bottom: 26px;
-}
-.btn-cont {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	margin-top: 47px;
-}
+
 .btn-a {
 	font-size: 18px;
 	width: 201px;
@@ -382,70 +372,21 @@ h3 {
 		inset 0px 0px 10px #3f74fb;
 	border-radius: 120px;
 }
-.supply {
-	font-size: 18px;
-	margin-left: 160px;
-	position: absolute;
-}
-
-.dollar {
-	font-size: 26px;
-	color: #b7b7b7;
-}
-.available {
-	font-size: 18px;
-	margin-left: 165px;
-	position: absolute;
-}
-.currency-wrapper {
-	margin-left: 24px;
-	margin-top: 11px;
-}
-
-.currency-wrapper,
-.line-wrapper {
-	display: flex;
-	align-items: center;
-}
-.line-wrapper {
-	margin-top: 28px;
-	margin-left: 24px;
-}
-
-.eth {
-	font-size: 32px;
-	font-weight: bold;
-}
 .buy-container {
+	position: relative;
 	align-self: center;
-	margin-top: 110px;
+	margin-top: 90px;
 	margin-bottom: 20px;
 	width: 310px;
-	height: 305px;
-	border-radius: 15px;
-	background-color: rgb(40, 38, 38, 0.3);
-	border: 1px solid rgb(74, 74, 74, 0.3);
+	height: 746px;
+	border-radius: 30px;
+	background: linear-gradient(61.43deg, #05262f 60.43%, #3895ad 211.6%);
+	box-shadow: 0px 15px 100px -5px rgba(3, 5, 10, 0.7);
 }
 
 /* stuff inside buy button */
 
 /* stuff inside sidebar */
-.wallet-id {
-	margin-left: 32px;
-	margin-top: 3px;
-}
-.wallet-value {
-	margin-top: 14px;
-	margin-left: 59px;
-	margin-bottom: 5px;
-	font-weight: bold;
-	font-size: 20px;
-	line-height: 24px;
-}
-.eth-eth {
-	margin-left: 4px;
-	font-weight: 200;
-}
 
 .sidebar {
 	display: flex;
@@ -454,15 +395,10 @@ h3 {
 	width: 360px;
 	height: 100%;
 	top: 0;
-	background: #171717;
+	background: rgb(5, 28, 34, 0.5);
 	right: 0;
 }
 
-.owners p {
-	font-family: "Roboto Mono", monospace;
-	font-size: 10px;
-	margin-bottom: 5px;
-}
 /* stuff inside sidebar */
 
 /* main release page items */
