@@ -314,11 +314,14 @@ export default {
 }
 
 .confetti-button.animate:before {
+	z-index: 900000;
 	display: block;
 	animation: topBubbles ease-in-out 0.75s forwards;
 }
 
 .confetti-button.animate:after {
+	z-index: 900000;
+
 	display: block;
 	animation: bottomBubbles ease-in-out 0.75s forwards;
 }
