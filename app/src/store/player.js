@@ -8,7 +8,7 @@ export default {
 		isPlaying: false,
 		currentTime: 0,
 		duration: 0,
-		volume: 0.1
+		volume: 0.8
 	},
 	getters: {
 		track(state) {
@@ -25,7 +25,7 @@ export default {
 			state.playlist = playlist;
 			state.index = index;
 
-			audio.volume = 0.1;
+			audio.volume = state.volume;
 
 			audio.src = state.playlist[
 				Math.abs(state.index % state.playlist.length)
