@@ -9,7 +9,9 @@
 				</h2>
 				<h2>2021, {{ release.tracks.length }} tracks</h2>
 				<div class="album-buttons">
-					<button class="btn-b">Play</button>
+					<button class="btn-b " v-on:click="play(track)">
+						Play
+					</button>
 				</div>
 			</div>
 		</div>
@@ -32,7 +34,7 @@
 					<div class="play-track" v-on:click="play(track)">
 						<div class="svg-cont">
 							<svg
-								v-if="isPlaying"
+								v-if="!isPlaying"
 								class="play-item"
 								width="8"
 								height="12"
