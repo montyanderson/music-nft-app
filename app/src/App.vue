@@ -8,8 +8,8 @@
 			</p>
 
 			<p class="my-releases">
-				<router-link to="/re" exact>
-					My Releases
+				<router-link to="/library" exact>
+					My Library
 				</router-link>
 			</p>
 
@@ -215,5 +215,19 @@ main {
 }
 .active {
 	color: #608dff !important;
+}
+
+h1 {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 70px;
+	line-height: 82px;
+	/* identical to box height */
+
+	color: #ffffff;
+
+	margin-left: 4.9vw;
+	margin-top: 100px;
 }
 </style>

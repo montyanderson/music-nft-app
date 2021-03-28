@@ -10,7 +10,7 @@
 
 <template>
 	<div class="home">
-		<h1 class="releaseText">Releases</h1>
+		<h1 class="releaseText">Library</h1>
 		<div class="header"></div>
 
 		<release-list v-bind:releases="releases"></release-list>
@@ -23,7 +23,7 @@ import ReleaseList from "../components/ReleaseList.vue";
 export default {
 	computed: {
 		releases() {
-			return this.$store.state.releases;
+			return this.$store.state.releases.filter(release => false);
 		}
 	},
 	components: {
