@@ -147,7 +147,7 @@
 					</button>
 					<p class="info-1">
 						This is a limited-release digital token, available as an
-						NFT. You can purchase this using Ethereum.
+						NFT. You can purchase this using <a href="javascript:null" v-on:click="openEthereumModal">Ethereum</a>.
 					</p>
 					<p class="info-2">
 						Once purchased, it will be available in My Library. It
@@ -156,10 +156,19 @@
 				</div>
 			</div>
 		</div>
+
+		<modal id="ethereum">
+			<h1>Ethereum</h1>
+
+			<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+		</modal>
+
 	</div>
 </template>
 
 <script>
+import Modal from "../components/Modal.vue";
+
 export default {
 	data() {
 		return {
@@ -220,7 +229,14 @@ export default {
 		},
 		playPause() {
 			this.$store.commit("player/playPause");
+		},
+
+		openEthereumModal() {
+			this.$store.commit("modal/open", "ethereum");
 		}
+	},
+	components: {
+		Modal
 	}
 };
 </script>
