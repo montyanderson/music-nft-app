@@ -1,0 +1,17 @@
+name: Build Staging
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Docker
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build
+        run: docker-compose -f docker-compose-staging.yml build --parallel
+      - name: Push
+        run: docker-compose -f docker-compose-staging.yml push
