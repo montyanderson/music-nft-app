@@ -108,11 +108,13 @@
 
 <script>
 export default {
-	data: () => ({
-		inputVolume: 0.1,
-		inputCurrentTime: 0,
-		progressBarClicked: false
-	}),
+	data: function() {
+		return {
+			inputVolume: this.$store.state.player.volume,
+			inputCurrentTime: 0,
+			progressBarClicked: false
+		};
+	},
 	watch: {
 		inputVolume(volume) {
 			this.$store.commit("player/setVolume", volume);

@@ -8,8 +8,8 @@
 			</p>
 
 			<p class="my-releases">
-				<router-link to="/re" exact>
-					My Releases
+				<router-link to="/library" exact>
+					My Library
 				</router-link>
 			</p>
 
@@ -49,7 +49,6 @@
 		</main>
 
 		<player></player>
-		
 	</div>
 </template>
 
@@ -89,8 +88,7 @@ export default {
 	text-align: left;
 	color: white;
 	overflow-x: hidden;
-	background: linear-gradient(180deg, #2f2d2d 0%, #121212 100%);
-
+	background: linear-gradient(179.13deg, #2e3c3f -16.12%, #051c22 52.38%);
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -180,7 +178,6 @@ main {
 	width: 210px;
 	height: 65px;
 	border-radius: 300px;
-	background-color: #282626;
 	margin-left: auto;
 	margin-bottom: auto;
 	z-index: +500;
@@ -218,5 +215,19 @@ main {
 }
 .active {
 	color: #608dff !important;
+}
+
+.page-title {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 70px;
+	line-height: 82px;
+	/* identical to box height */
+
+	color: #ffffff;
+
+	margin-left: 4.9vw;
+	margin-top: 100px;
 }
 </style>

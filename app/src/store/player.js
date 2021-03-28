@@ -8,7 +8,7 @@ export default {
 		isPlaying: false,
 		currentTime: 0,
 		duration: 0,
-		volume: 0.1
+		volume: 0.8
 	},
 	getters: {
 		track(state) {
@@ -25,7 +25,7 @@ export default {
 			state.playlist = playlist;
 			state.index = index;
 
-			audio.volume = 0.1;
+			audio.volume = state.volume;
 
 			audio.src = state.playlist[
 				Math.abs(state.index % state.playlist.length)
@@ -35,6 +35,16 @@ export default {
 
 			state.currentTime = 0;
 			state.isPlaying = true;
+		},
+
+		playPause(state) {
+			state.isPlaying = !state.isPlaying;
+
+			if(state.isPlaying === true) {
+				audio.play();
+			} else {
+				audio.pause();
+			}
 		},
 
 		pause(state) {
@@ -91,7 +101,7 @@ export default {
 		}
 	},
 	actions: {
-		init({ state, commit, dispatch }) {
+		init({ commit, dispatch }) {
 			window.audio = audio;
 
 			audio.addEventListener("ended", function() {
@@ -103,7 +113,7 @@ export default {
 			}, 100);
 		},
 
-		updateProgress({ state, commit }) {
+		updateProgress({ commit }) {
 			const { duration, currentTime } = audio;
 
 			if (isNaN(duration) || isNaN(currentTime)) {

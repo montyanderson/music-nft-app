@@ -9,7 +9,9 @@
 				</h2>
 				<h2>2021, {{ release.tracks.length }} tracks</h2>
 				<div class="album-buttons">
-					<button class="btn-b">Play</button>
+					<button class="btn-b " v-on:click="play(track)">
+						Play
+					</button>
 				</div>
 			</div>
 		</div>
@@ -28,115 +30,113 @@
 				@mouseover="hover = index"
 				:class="{ activeItem: hover === index }"
 			>
-				<td v-if="hover === index">
-					<div class="play-track" v-on:click="play(track)">
-						<svg
-							v-if="isPlaying"
-							class="play-item"
-							width="8"
-							height="12"
-							viewBox="0 0 8 12"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M8 6L0.5 11.1962L0.500001 0.803847L8 6Z"
+				<td v-if="hover === index || playerTrack === track">
+					<div class="play-track" v-on:click="playerTrack === track ? playPause() : play(track)">
+						<div class="svg-cont">
+							<svg
+								v-if="!(isPlaying && playerTrack === track)"
+								class="play-item"
+								width="8"
+								height="12"
+								viewBox="0 0 8 12"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M8 6L0.5 11.1962L0.500001 0.803847L8 6Z"
+									fill="black"
+								/>
+							</svg>
+							<svg
+								v-else
+								xmlns="http://www.w3.org/2000/svg"
+								width="15"
+								height="15"
 								fill="black"
-							/>
-						</svg>
-						<svg
-							v-else
-							xmlns="http://www.w3.org/2000/svg"
-							width="15"
-							height="15"
-							fill="black"
-							class="play-item"
-							viewBox="0 0 16 16"
-						>
-							<path
-								d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
-							/>
-						</svg>
-						<svg
-							class="play-hover"
-							width="35"
-							height="35"
-							viewBox="0 0 40 40"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g filter="url(#filter0_i)">
-								<circle cx="20" cy="20" r="20" fill="white" />
-							</g>
-							<defs>
-								<filter
-									id="filter0_i"
-									x="0"
-									y="0"
-									width="40"
-									height="40"
-									filterUnits="userSpaceOnUse"
-									color-interpolation-filters="sRGB"
-								>
-									<feFlood
-										flood-opacity="0"
-										result="BackgroundImageFix"
+								class="play-item"
+								viewBox="0 0 16 16"
+							>
+								<path
+									d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
+								/>
+							</svg>
+							<svg
+								class="play-hover"
+								width="35"
+								height="35"
+								viewBox="0 0 40 40"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<g filter="url(#filter0_i)">
+									<circle
+										cx="20"
+										cy="20"
+										r="20"
+										fill="white"
 									/>
-									<feBlend
-										mode="normal"
-										in="SourceGraphic"
-										in2="BackgroundImageFix"
-										result="shape"
-									/>
-									<feColorMatrix
-										in="SourceAlpha"
-										type="matrix"
-										values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-										result="hardAlpha"
-									/>
-									<feOffset />
-									<feGaussianBlur stdDeviation="10" />
-									<feComposite
-										in2="hardAlpha"
-										operator="arithmetic"
-										k2="-1"
-										k3="1"
-									/>
-									<feColorMatrix
-										type="matrix"
-										values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"
-									/>
-									<feBlend
-										mode="normal"
-										in2="shape"
-										result="effect1_innerShadow"
-									/>
-								</filter>
-							</defs>
-						</svg>
+								</g>
+								<defs>
+									<filter
+										id="filter0_i"
+										x="0"
+										y="0"
+										width="40"
+										height="40"
+										filterUnits="userSpaceOnUse"
+										color-interpolation-filters="sRGB"
+									>
+										<feFlood
+											flood-opacity="0"
+											result="BackgroundImageFix"
+										/>
+										<feBlend
+											mode="normal"
+											in="SourceGraphic"
+											in2="BackgroundImageFix"
+											result="shape"
+										/>
+										<feColorMatrix
+											in="SourceAlpha"
+											type="matrix"
+											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+											result="hardAlpha"
+										/>
+										<feOffset />
+										<feGaussianBlur stdDeviation="10" />
+										<feComposite
+											in2="hardAlpha"
+											operator="arithmetic"
+											k2="-1"
+											k3="1"
+										/>
+										<feColorMatrix
+											type="matrix"
+											values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"
+										/>
+										<feBlend
+											mode="normal"
+											in2="shape"
+											result="effect1_innerShadow"
+										/>
+									</filter>
+								</defs>
+							</svg>
+						</div>
 					</div>
 				</td>
 				<td v-else>{{ index + 1 }}</td>
 
 				<td>{{ track.name }}</td>
-				<td v-on:click="play(track)">Play</td>
+				<td v-on:click="play(track)"></td>
 			</tr>
 		</table>
 
 		<div class="sidebar">
 			<div class="buy-container">
-				<div class="line-wrapper">
-					<p class="eth">{{ ethPrice }}</p>
-					<p class="eth-eth eth">&nbsp; ETH</p>
-					<p class="available">
-						{{ release.availableCopies }} available
-					</p>
-				</div>
-				<div class="currency-wrapper">
-					<p class="dollar">${{ usdPrice }}</p>
-					<p class="supply">{{ release.totalCopies }} in supply</p>
-				</div>
-				<div class="btn-cont">
+				<h4>{{ ethPrice }} <span> ETH </span></h4>
+				<h5>${{ usdPrice }}</h5>
+				<div class="center-cont">
 					<button
 						class="btn-a confetti-button"
 						:class="{ animate: animate }"
@@ -145,23 +145,14 @@
 					>
 						Buy now
 					</button>
-
-					<p class="own-warning" v-if="release.availableCopies === 0">
-						sold out
+					<p class="info-1">
+						This is a limited-release digital token, available as an
+						NFT. You can purchase this using Ethereum.
 					</p>
-					<p class="own-warning" v-else>
-						You already own 1 of these!
+					<p class="info-2">
+						Once purchased, it will be available in My Library. It
+						may be available for trade at a future date.
 					</p>
-				</div>
-			</div>
-			<div class="owner-container">
-				<h3>Owners</h3>
-				<div class="owners">
-					<p v-if="release.owners.length === 0">
-						no ones owns this yet :(
-					</p>
-					<p></p>
-					<p v-for="owner in release.owners">{{ owner.address }}</p>
 				</div>
 			</div>
 		</div>
@@ -209,6 +200,9 @@ export default {
 		},
 		walletConnected() {
 			return this.$store.state.walletConnected;
+		},
+		playerTrack() {
+			return this.$store.getters["player/track"] || {};
 		}
 	},
 	methods: {
@@ -218,18 +212,20 @@ export default {
 		async buy() {
 			await this.$store.dispatch("buy", this.release.id);
 		},
-		async play(track) {
+		play(track) {
 			this.$store.commit("player/start", {
 				playlist: this.release.tracks,
 				index: this.release.tracks.indexOf(track)
 			});
+		},
+		playPause() {
+			this.$store.commit("player/playPause");
 		}
 	}
 };
 </script>
 
 <style scoped>
-/* anim */
 .confetti-button {
 	cursor: pointer;
 	position: relative;
@@ -288,11 +284,14 @@ export default {
 }
 
 .confetti-button.animate:before {
+	z-index: 900000;
 	display: block;
 	animation: topBubbles ease-in-out 0.75s forwards;
 }
 
 .confetti-button.animate:after {
+	z-index: 900000;
+
 	display: block;
 	animation: bottomBubbles ease-in-out 0.75s forwards;
 }
@@ -329,47 +328,11 @@ export default {
 /* anim */
 
 /* stuff inside  owner section */
-.owners {
-	margin-top: 29px;
-	margin-left: 24px;
-}
-.owners p {
-	font-size: 10px;
-	overflow: hidden;
-}
 
-.owner-container {
-	align-self: center;
-	width: 310px;
-	background-color: #282626;
-	border-radius: 15px;
-	margin-bottom: 20px;
-	background-color: rgb(40, 38, 38, 0.3);
-	border: 1px solid rgb(74, 74, 74, 0.3);
-
-	display: flex;
-	flex-direction: column;
-	padding-bottom: 20px;
-}
-h3 {
-	margin-top: 31px;
-	margin-left: 24px;
-	font-size: 30px;
-}
 /* stuff inside  owner section */
 
 /* stuff inside buy button */
-.own-warning {
-	margin-top: 42px;
-	font-size: 18px;
-	padding-bottom: 26px;
-}
-.btn-cont {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	margin-top: 47px;
-}
+
 .btn-a {
 	font-size: 18px;
 	width: 201px;
@@ -382,69 +345,54 @@ h3 {
 		inset 0px 0px 10px #3f74fb;
 	border-radius: 120px;
 }
-.supply {
-	font-size: 18px;
-	margin-left: 160px;
-	position: absolute;
-}
-
-.dollar {
-	font-size: 26px;
-	color: #b7b7b7;
-}
-.available {
-	font-size: 18px;
-	margin-left: 165px;
-	position: absolute;
-}
-.currency-wrapper {
-	margin-left: 24px;
-	margin-top: 11px;
-}
-
-.currency-wrapper,
-.line-wrapper {
-	display: flex;
-	align-items: center;
-}
-.line-wrapper {
-	margin-top: 28px;
-	margin-left: 24px;
-}
-
-.eth {
-	font-size: 32px;
-	font-weight: bold;
-}
 .buy-container {
+	position: relative;
 	align-self: center;
-	margin-top: 110px;
+	margin-top: 90px;
 	margin-bottom: 20px;
 	width: 310px;
-	height: 305px;
-	border-radius: 15px;
-	background-color: rgb(40, 38, 38, 0.3);
-	border: 1px solid rgb(74, 74, 74, 0.3);
+	height: 746px;
+	border-radius: 30px;
+	background: linear-gradient(61.43deg, #05262f 60.43%, #3895ad 211.6%);
+	box-shadow: 0px 15px 100px -5px rgba(3, 5, 10, 0.7);
 }
 
 /* stuff inside buy button */
 
 /* stuff inside sidebar */
-.wallet-id {
-	margin-left: 32px;
-	margin-top: 3px;
+.info-2 {
+	font-size: 15px;
+	width: 234px;
+	margin-top: 15px;
+	padding-bottom: 58px;
 }
-.wallet-value {
-	margin-top: 14px;
-	margin-left: 59px;
-	margin-bottom: 5px;
-	font-weight: bold;
-	font-size: 20px;
-	line-height: 24px;
+.info-1 {
+	font-size: 15px;
+	width: 234px;
+	margin-top: 30px;
 }
-.eth-eth {
+.center-cont {
+	align-items: center;
+	display: flex;
+	margin-top: 24px;
+	flex-direction: column;
+}
+.buy-container h5 {
+	margin-top: 17px;
+	margin-left: 40px;
+	font-size: 18px;
+	line-height: 22px;
+	color: #9ca9ac;
+}
+.buy-container h4 {
+	font-weight: 700;
+	font-size: 40px;
+	margin-top: 40px;
+	margin-left: 40px;
+}
+.buy-container span {
+	font-weight: normal;
 	margin-left: 4px;
-	font-weight: 200;
 }
 
 .sidebar {
@@ -454,15 +402,10 @@ h3 {
 	width: 360px;
 	height: 100%;
 	top: 0;
-	background: #171717;
+	background: rgb(5, 28, 34, 0.5);
 	right: 0;
 }
 
-.owners p {
-	font-family: "Roboto Mono", monospace;
-	font-size: 10px;
-	margin-bottom: 5px;
-}
 /* stuff inside sidebar */
 
 /* main release page items */
@@ -558,9 +501,12 @@ a {
 	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	right: 30px;
 	cursor: pointer;
+}
+.svg-cont {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .play-hover {
