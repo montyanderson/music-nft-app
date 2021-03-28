@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Login to Docker
-        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username montysbot --password-stdin
       - name: Build
         run: docker-compose -f docker-compose-staging.yml build --parallel
       - name: Push
