@@ -10,7 +10,7 @@
 
 <template>
 	<div class="home">
-		<h1 class="releaseText">Library</h1>
+		<h1 class="page-title">Library</h1>
 		<div class="header"></div>
 
 		<release-list v-bind:releases="releases"></release-list>

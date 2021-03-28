@@ -217,7 +217,7 @@ main {
 	color: #608dff !important;
 }
 
-h1 {
+.page-title {
 	font-family: Inter;
 	font-style: normal;
 	font-weight: bold;
