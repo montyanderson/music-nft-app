@@ -30,11 +30,11 @@
 				@mouseover="hover = index"
 				:class="{ activeItem: hover === index }"
 			>
-				<td v-if="hover === index">
-					<div class="play-track" v-on:click="play(track)">
+				<td v-if="hover === index || playerTrack === track">
+					<div class="play-track" v-on:click="playerTrack === track ? playPause() : play(track)">
 						<div class="svg-cont">
 							<svg
-								v-if="!isPlaying"
+								v-if="!(isPlaying && playerTrack === track)"
 								class="play-item"
 								width="8"
 								height="12"
@@ -128,7 +128,7 @@
 				<td v-else>{{ index + 1 }}</td>
 
 				<td>{{ track.name }}</td>
-				<td v-on:click="play(track)">Play</td>
+				<td v-on:click="play(track)"></td>
 			</tr>
 		</table>
 
@@ -200,6 +200,9 @@ export default {
 		},
 		walletConnected() {
 			return this.$store.state.walletConnected;
+		},
+		playerTrack() {
+			return this.$store.getters["player/track"] || {};
 		}
 	},
 	methods: {
@@ -209,11 +212,14 @@ export default {
 		async buy() {
 			await this.$store.dispatch("buy", this.release.id);
 		},
-		async play(track) {
+		play(track) {
 			this.$store.commit("player/start", {
 				playlist: this.release.tracks,
 				index: this.release.tracks.indexOf(track)
 			});
+		},
+		playPause() {
+			this.$store.commit("player/playPause");
 		}
 	}
 };

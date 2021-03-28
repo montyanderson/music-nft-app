@@ -37,6 +37,16 @@ export default {
 			state.isPlaying = true;
 		},
 
+		playPause(state) {
+			state.isPlaying = !state.isPlaying;
+
+			if(state.isPlaying === true) {
+				audio.play();
+			} else {
+				audio.pause();
+			}
+		},
+
 		pause(state) {
 			audio.pause();
 			state.isPlaying = false;
@@ -91,7 +101,7 @@ export default {
 		}
 	},
 	actions: {
-		init({ state, commit, dispatch }) {
+		init({ commit, dispatch }) {
 			window.audio = audio;
 
 			audio.addEventListener("ended", function() {
@@ -103,7 +113,7 @@ export default {
 			}, 100);
 		},
 
-		updateProgress({ state, commit }) {
+		updateProgress({ commit }) {
 			const { duration, currentTime } = audio;
 
 			if (isNaN(duration) || isNaN(currentTime)) {
