@@ -31,7 +31,12 @@
 				:class="{ activeItem: hover === index }"
 			>
 				<td v-if="hover === index || playerTrack === track">
-					<div class="play-track" v-on:click="playerTrack === track ? playPause() : play(track)">
+					<div
+						class="play-track"
+						v-on:click="
+							playerTrack === track ? playPause() : play(track)
+						"
+					>
 						<div class="svg-cont">
 							<svg
 								v-if="!(isPlaying && playerTrack === track)"
@@ -502,6 +507,7 @@ a {
 	display: flex;
 	align-items: center;
 	cursor: pointer;
+	margin-left: 5px;
 }
 .svg-cont {
 	display: flex;
@@ -525,6 +531,7 @@ a {
 }
 .table-spacing {
 	margin-bottom: 20px;
+	margin-left: 15px;
 }
 
 .track {
