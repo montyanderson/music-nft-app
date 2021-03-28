@@ -56,6 +56,8 @@ export default {
     
     margin-top: 150px;
     padding: 50px 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 h1 {
@@ -63,7 +65,8 @@ h1 {
     font-size: 48px;
     line-height: 58px;
 
-    color: #FFFFFF; 
+    color: #FFFFFF;
+
 }
 
 p {
