@@ -1,5 +1,6 @@
 <template>
 	<div class="modal-container" v-if="isOpen">
+		<div class="modal-backdrop" v-on:click="close"></div>
 		<div class="modal">
 			<div class="modal-button" v-on:click="close">
 				<svg
@@ -34,11 +35,28 @@ export default {
 		close() {
 			this.$store.state.modal.active = null;
 		}
+	},
+	created() {
+		const onEscape = e => {
+			if (e.keyCode === 27) this.close();
+		};
+		document.addEventListener("keydown", onEscape);
+		this.$once("hook:destroyed", () => {
+			document.removeEventListener("keydown", onEscape);
+		});
 	}
 };
 </script>
 
 <style scoped>
+.modal-backdrop {
+	position: absolute;
+	background: rgba(87, 87, 87, 0.3);
+	width: 100vw;
+	height: 100vh;
+	backdrop-filter: blur(1px);
+	z-index: 0;
+}
 .modal-button:hover {
 	transform: scale(1.3);
 }

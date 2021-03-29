@@ -1,4 +1,4 @@
-<template>
+<template @keydown.esc="close">
 	<div v-if="!releasesLoading">
 		<div class="outer-container">
 			<img v-bind:src="release.imageUrl" alt="album art" />
@@ -238,6 +238,10 @@ export default {
 		}
 	},
 	methods: {
+		close() {
+			console.log("hell");
+			this.$store.state.modal.active = null;
+		},
 		anim() {
 			this.animate = true;
 		},
