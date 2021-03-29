@@ -186,6 +186,7 @@
 				dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
 			</p>
 		</modal>
+		<div class="rel-pad"></div>
 	</div>
 </template>
 
@@ -272,6 +273,9 @@ export default {
 </script>
 
 <style scoped>
+.rel-pad {
+	padding-bottom: 170px;
+}
 .confetti-button {
 	cursor: pointer;
 	position: relative;
@@ -572,7 +576,6 @@ a {
 .tracklist {
 	width: calc(90% - 350px);
 	margin-left: 62px;
-
 	margin-top: 56px;
 	border-collapse: collapse;
 }

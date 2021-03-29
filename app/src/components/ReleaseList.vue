@@ -1,67 +1,65 @@
 <template>
-    <div>
-        <div class="releases" v-if="releasesLoading === false">
+	<div>
+		<div class="releases" v-if="releasesLoading === false">
 			<p class="no-releases" v-if="releases.length === 0">
 				Nothing to see here :(
 			</p>
 
-            <div
-                class="release"
-                v-for="release in releases"
-                v-on:click="goToRelease(release)"
-            >
-                <img class="image" v-bind:src="release.imageUrl" />
-                <p class="name">{{ release.name }}</p>
-                <p class="artist">{{ release.artist }}</p>
-                <p class="available" v-if="release.availableCopies === 0">
-                    sold out
-                </p>
-                <p class="available" v-else>
-                    {{ release.availableCopies }} available
-                </p>
-            </div>
-        </div>
+			<div
+				class="release"
+				v-for="release in releases"
+				v-on:click="goToRelease(release)"
+			>
+				<img class="image" v-bind:src="release.imageUrl" />
+				<p class="name">{{ release.name }}</p>
+				<p class="artist">{{ release.artist }}</p>
+				<p class="available" v-if="release.availableCopies === 0">
+					sold out
+				</p>
+				<p class="available" v-else>
+					{{ release.availableCopies }} available
+				</p>
+			</div>
+		</div>
 
 		<div class="releases" v-else>
 			<div class="release">
-					<content-placeholders>
-						<div class="image">
-							<content-placeholders-img />
-						</div>
+				<content-placeholders>
+					<div class="image">
+						<content-placeholders-img />
+					</div>
 
-						<p class="name"><content-placeholders-heading /></p>
-   
-
-					</content-placeholders>
+					<p class="name"><content-placeholders-heading /></p>
+				</content-placeholders>
 			</div>
 		</div>
-    </div>
+	</div>
 </template>
 
 <script>
 export default {
-    props: {
-        "releases": Array
-    },
-    computed: {
-        releasesLoading() {
+	props: {
+		releases: Array
+	},
+	computed: {
+		releasesLoading() {
 			return this.$store.state.releasesLoading;
 		}
-    },
-    methods: {
-        goToRelease({ id }) {
-            this.$router.push({
-                path: `/release/${id}`
-            });
-        }
-    }
+	},
+	methods: {
+		goToRelease({ id }) {
+			this.$router.push({
+				path: `/release/${id}`
+			});
+		}
+	}
 };
 </script>
 
 <style scoped>
 .releases {
 	margin-top: 1rem;
-  position: relative;
+	position: relative;
 
 	width: 95vw;
 	display: table;
@@ -79,7 +77,8 @@ export default {
 	cursor: pointer;
 }
 
-.release .image, .release .image * {
+.release .image,
+.release .image * {
 	width: calc(23vw - 2.8vw);
 	height: calc(23vw - 2.8vw);
 	margin-top: 30px;
@@ -95,7 +94,7 @@ export default {
 	margin-top: 2px;
 }
 
-.available{
+.available {
 	margin-top: 20px;
 	font-size: 17px;
 	color: #878787;
@@ -107,7 +106,8 @@ export default {
 		margin-left: 3.5vw;
 		grid-gap: 3vw;
 	}
-	.release .image, .release .image * {
+	.release .image,
+	.release .image * {
 		width: 45vw;
 	}
 	.releaseText {
@@ -123,7 +123,8 @@ export default {
 		margin-left: 2.5vw;
 		margin-top: 100px;
 	}
-	.release .image, .release .image * {
+	.release .image,
+	.release .image * {
 		width: 90px;
 		margin-top: -70px;
 	}
