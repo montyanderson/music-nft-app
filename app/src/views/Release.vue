@@ -31,7 +31,12 @@
 				:class="{ activeItem: hover === index }"
 			>
 				<td v-if="hover === index || playerTrack === track">
-					<div class="play-track" v-on:click="playerTrack === track ? playPause() : play(track)">
+					<div
+						class="play-track"
+						v-on:click="
+							playerTrack === track ? playPause() : play(track)
+						"
+					>
 						<div class="svg-cont">
 							<svg
 								v-if="!(isPlaying && playerTrack === track)"
@@ -147,22 +152,40 @@
 					</button>
 					<p class="info-1">
 						This is a limited-release digital token, available as an
-						NFT. You can purchase this using <a href="javascript:null" v-on:click="openEthereumModal">Ethereum</a>.
+						<a href="javascript:null" @click="openNFTModal">
+							NFT.</a
+						>
+						You can purchase this using
+						<a href="javascript:null" v-on:click="openEthereumModal"
+							>Ethereum</a
+						>.
 					</p>
 					<p class="info-2">
-						Once purchased, it will be available in My Library. It
-						may be available for trade at a future date.
+						Once purchased, it will be available in
+						<router-link to="/library" exact> Library.</router-link>
+						It may be available for trade at a future date.
 					</p>
 				</div>
 			</div>
 		</div>
-
 		<modal id="ethereum">
 			<h1>Ethereum</h1>
 
-			<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+			<p>
+				Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+				consectetur, adipisci velit. Neque porro quisquam est qui
+				dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+			</p>
 		</modal>
+		<modal id="openNFTModal">
+			<h1>NFT</h1>
 
+			<p>
+				Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+				consectetur, adipisci velit. Neque porro quisquam est qui
+				dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+			</p>
+		</modal>
 	</div>
 </template>
 
@@ -233,6 +256,9 @@ export default {
 
 		openEthereumModal() {
 			this.$store.commit("modal/open", "ethereum");
+		},
+		openNFTModal() {
+			this.$store.commit("modal/open", "openNFTModal");
 		}
 	},
 	components: {
@@ -376,6 +402,11 @@ export default {
 /* stuff inside buy button */
 
 /* stuff inside sidebar */
+
+.info-1 a,
+.info-2 a {
+	color: #194fda !important;
+}
 .info-2 {
 	font-size: 15px;
 	width: 234px;
@@ -387,6 +418,7 @@ export default {
 	width: 234px;
 	margin-top: 30px;
 }
+
 .center-cont {
 	align-items: center;
 	display: flex;
