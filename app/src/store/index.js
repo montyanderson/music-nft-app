@@ -6,6 +6,7 @@ import { ocean } from "../lib/contract.js";
 import price from "../lib/price.js";
 import { getRelease, getAvailableToken } from "../lib/release.js";
 import player from "./player.js";
+import modal from "./modal.js";
 
 Vue.use(Vuex);
 
@@ -115,6 +116,7 @@ export default new Vuex.Store({
 		}
 	},
 	modules: {
-		player
+		player,
+		modal
 	}
 });
