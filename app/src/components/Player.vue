@@ -92,7 +92,7 @@
 			min="0"
 			step="0.01"
 			v-model="inputVolume"
-		>
+		/>
 		<div class="name">{{ track.name }}</div>
 		<div class="artist">{{ track.artist }}</div>
 		<img
@@ -100,7 +100,7 @@
 			v-if="track && track.imageUrl"
 			:src="track.imageUrl"
 			alt=""
-		>
+		/>
 		<div class="current-time">{{ currentTime | displayTime }}</div>
 		<div class="duration">{{ duration | displayTime }}</div>
 	</div>
@@ -120,15 +120,18 @@ export default {
 			this.$store.commit("player/setVolume", volume);
 		},
 		progressBarClicked(clicked) {
-			console.log({clicked})
+			console.log({ clicked });
 
-			if(clicked === false) {
+			if (clicked === false) {
 				console.log("updating player/setCurrentTime");
-				this.$store.commit("player/setCurrentTime", this.inputCurrentTime);
+				this.$store.commit(
+					"player/setCurrentTime",
+					this.inputCurrentTime
+				);
 			}
 		},
 		currentTime(currentTime) {
-			if(this.progressBarClicked === false) {
+			if (this.progressBarClicked === false) {
 				console.log("updating input current time");
 				this.inputCurrentTime = currentTime;
 			}
@@ -172,14 +175,14 @@ export default {
 	filters: {
 		displayTime(totalSeconds) {
 			let minutes = `${Math.floor(totalSeconds / 60)}`;
-			
-			if(minutes.length === 1) {
+
+			if (minutes.length === 1) {
 				minutes = `0${minutes}`;
 			}
 
 			let seconds = `${Math.floor(totalSeconds % 60)}`;
 
-			if(seconds.length === 1) {
+			if (seconds.length === 1) {
 				seconds = `0${seconds}`;
 			}
 
@@ -196,7 +199,7 @@ export default {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	background: #171717;
+	background: #051c22;
 }
 
 .playbtn {

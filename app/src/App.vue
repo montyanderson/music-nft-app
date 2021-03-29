@@ -49,6 +49,7 @@
 		</main>
 
 		<player></player>
+		<div class="rel-pad"></div>
 	</div>
 </template>
 
@@ -68,6 +69,10 @@ export default {
 </script>
 
 <style>
+.rel-pad {
+	padding-bottom: 700px;
+}
+
 * {
 	margin: 0;
 	padding: 0;
