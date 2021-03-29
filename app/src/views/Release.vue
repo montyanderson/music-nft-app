@@ -471,6 +471,7 @@ export default {
 	margin-top: 0px;
 }
 .outer-container img {
+	z-index: 60px;
 	width: 290px;
 	height: 290px;
 	margin-top: 54px;

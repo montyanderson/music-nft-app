@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<nav>
+			<p class="lifted-dapp">Lifted</p>
 			<p class="all-releases">
 				<router-link to="/" exact>
 					All Releases
@@ -69,6 +70,19 @@ export default {
 </script>
 
 <style>
+.lifted-dapp {
+	z-index: 50;
+	top: 14px;
+	margin-left: 4.9vw;
+	position: fixed;
+	display: fixed;
+	font-weight: 700;
+	font-size: 35px;
+	background: linear-gradient(57.71deg, #89aaff 6.65%, #2864ff 86.64%);
+	letter-spacing: 0.03em;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
 .rel-pad {
 	padding-bottom: 700px;
 }
