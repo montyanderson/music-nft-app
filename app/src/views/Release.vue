@@ -388,10 +388,17 @@ export default {
 	cursor: pointer;
 	border: none;
 	color: white;
+	outline: none;
 	background: linear-gradient(262.53deg, #608dff 3.6%, #3f74fb 100%);
 	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134ad3,
 		inset 0px 0px 10px #3f74fb;
 	border-radius: 120px;
+}
+.btn-a:hover {
+	transform: scale(1.05);
+}
+.btn-a:active {
+	transform: scale(0.9);
 }
 .buy-container {
 	position: relative;
@@ -525,12 +532,17 @@ a {
 	top: 20px;
 	position: relative;
 	border-radius: 120px;
+	outline: none;
 
 	background: linear-gradient(262.53deg, #608dff 3.6%, #3f74fb 100%);
 	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134ad3,
 		inset 0px 0px 10px #3f74fb;
 	border-radius: 120px;
 	border-radius: 120px;
+	transition: all 0.1s;
+}
+.btn-b:hover {
+	transform: scale(1.05);
 }
 .btn-a span {
 	font-size: 18px;
