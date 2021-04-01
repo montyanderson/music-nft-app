@@ -79,7 +79,6 @@ export default {
 	letter-spacing: 0.03em;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
-	transition: all 0.1s;
 }
 
 .rel-pad {
