@@ -1,17 +1,15 @@
 <template>
 	<div id="app">
 		<nav>
-			<p class="lifted-dapp">Lifted</p>
+			<p class="lifted-dapp">
+				<router-link to="/" exact> Lifted </router-link>
+			</p>
 			<p class="all-releases">
-				<router-link to="/" exact>
-					All Releases
-				</router-link>
+				<router-link to="/" exact> All Releases </router-link>
 			</p>
 
 			<p class="my-releases">
-				<router-link to="/library" exact>
-					My Library
-				</router-link>
+				<router-link to="/library" exact> My Library </router-link>
 			</p>
 
 			<transition name="connect-anim">
@@ -63,6 +61,7 @@ export default {
 		this.$store.dispatch("getPrice");
 		this.$store.dispatch("player/init");
 	},
+
 	components: {
 		Player
 	}
@@ -72,10 +71,8 @@ export default {
 <style>
 .lifted-dapp {
 	z-index: 50;
-	top: 14px;
 	margin-left: 4.9vw;
-	position: fixed;
-	display: fixed;
+	position: absolute;
 	font-weight: 700;
 	font-size: 35px;
 	background: linear-gradient(57.71deg, #89aaff 6.65%, #2864ff 86.64%);
@@ -116,7 +113,9 @@ export default {
 }
 
 nav {
-	height: 250px;
+	display: flex;
+	align-items: center;
+	height: 85px;
 }
 
 a {
@@ -127,21 +126,19 @@ a {
 .all-releases {
 	position: fixed;
 	right: 540px;
-	top: 32px;
-	z-index: +1;
 	cursor: pointer;
 	border: none;
 	color: #929292;
+	z-index: +1;
 }
 
 .my-releases {
 	position: fixed;
 	right: 400px;
-	top: 32px;
-	z-index: +1;
 	cursor: pointer;
 	border: none;
 	color: #929292;
+	z-index: +1;
 }
 
 main {

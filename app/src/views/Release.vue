@@ -9,9 +9,7 @@
 				</h2>
 				<h2>2021, {{ release.tracks.length }} tracks</h2>
 				<div class="album-buttons">
-					<button class="btn-b " v-on:click="play(track)">
-						Play
-					</button>
+					<button class="btn-b" v-on:click="play(track)">Play</button>
 				</div>
 			</div>
 		</div>
@@ -201,7 +199,7 @@ export default {
 		};
 	},
 	watch: {
-		animate: function() {
+		animate: function () {
 			if (this.animate === true) {
 				setTimeout(() => {
 					this.animate = false;
@@ -219,7 +217,7 @@ export default {
 			}
 
 			return this.$store.state.releases.find(
-				release => String(release.id) === this.$route.params.id
+				(release) => String(release.id) === this.$route.params.id
 			);
 		},
 		ethPrice() {
@@ -476,6 +474,7 @@ export default {
 	height: 290px;
 	margin-top: 54px;
 	margin-left: 62px;
+	border-radius: 1px;
 }
 .album-info {
 	display: flex;
