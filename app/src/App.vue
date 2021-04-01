@@ -79,7 +79,9 @@ export default {
 	letter-spacing: 0.03em;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
+	transition: all 0.1s;
 }
+
 .rel-pad {
 	padding-bottom: 700px;
 }
@@ -163,6 +165,10 @@ main {
 	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3), inset 0px 0px 30px #134ad3,
 		inset 0px 0px 10px #3f74fb;
 	border-radius: 120px;
+	transition: all 0.1s;
+}
+.connectBtn:hover {
+	transform: scale(1.05);
 }
 .connectText {
 	position: absolute;
