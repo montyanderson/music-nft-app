@@ -82,6 +82,7 @@ export default {
 	width: calc(23vw - 2.8vw);
 	height: calc(23vw - 2.8vw);
 	margin-top: 30px;
+	border-radius: 1px;
 }
 
 .name {
