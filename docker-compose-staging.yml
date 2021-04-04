@@ -3,8 +3,8 @@ version: "3.8"
 services:
   app:
     build:
-        context: app
-        dockerfile: Dockerfile
-        args:
-          - GITHUB_SHA=${GITHUB_SHA}
+      context: app
+      dockerfile: Dockerfile
+      args:
+        - GITHUB_SHA=${GITHUB_SHA}
     image: montyanderson/nft-demo:staging
