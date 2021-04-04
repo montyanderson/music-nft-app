@@ -24,12 +24,14 @@
 
 		<div class="releases" v-else>
 			<div class="release">
-				<content-placeholders>
+				<content-placeholders :rounded="true">
 					<div class="image">
 						<content-placeholders-img />
 					</div>
 
-					<p class="name"><content-placeholders-heading /></p>
+					<p class="name">
+						<content-placeholders-heading />
+					</p>
 				</content-placeholders>
 			</div>
 		</div>
@@ -79,6 +81,8 @@ export default {
 
 .release .image,
 .release .image * {
+	height: calc(23vw - 1vw);
+
 	width: calc(23vw - 1vw);
 	margin-top: 30px;
 	border-radius: 1px;
@@ -89,6 +93,7 @@ export default {
 	text-align: left;
 	margin-top: 1rem;
 }
+
 .artist {
 	font-size: 15px;
 	margin-top: 2px;
@@ -124,6 +129,7 @@ export default {
 	.release .image * {
 		width: 90px;
 		margin-top: -70px;
+		height: 90px;
 	}
 	.releaseText {
 		font-size: 50px;
