@@ -79,8 +79,7 @@ export default {
 
 .release .image,
 .release .image * {
-	width: calc(23vw - 2.8vw);
-	height: calc(23vw - 2.8vw);
+	width: calc(23vw - 1vw);
 	margin-top: 30px;
 	border-radius: 1px;
 }
@@ -107,10 +106,7 @@ export default {
 		margin-left: 3.5vw;
 		grid-gap: 3vw;
 	}
-	.release .image,
-	.release .image * {
-		width: 45vw;
-	}
+
 	.releaseText {
 		font-size: 60px;
 		margin-left: 3.5vw;
@@ -141,11 +137,16 @@ export default {
 		font-weight: 600;
 		font-size: 1.4rem;
 		text-align: left;
-		margin-top: 1rem;
+		margin-top: 0px;
 	}
 	.artist {
 		position: relative;
 		top: -87px;
+		left: 110px;
+	}
+	.available {
+		position: relative;
+		top: -99px;
 		left: 110px;
 	}
 }
