@@ -5,4 +5,6 @@ services:
     build:
         context: app
         dockerfile: Dockerfile
+        args:
+          - GITHUB_SHA=${GITHUB_SHA}
     image: montyanderson/nft-demo:staging
