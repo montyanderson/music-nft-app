@@ -8,9 +8,7 @@ import store from "./store";
 Vue.config.productionTip = false;
 Vue.use(VueContentPlaceholders);
 
-const { GITHUB_SHA } = process.env;
-
-console.log({ GITHUB_SHA });
+console.log(process.env);
 
 new Vue({
 	router,
