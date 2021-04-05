@@ -75,7 +75,13 @@ export default {
 	position: absolute;
 	font-weight: 700;
 	font-size: 35px;
-	background: linear-gradient(57.71deg, #89aaff 6.65%, #2864ff 86.64%);
+	background: linear-gradient(
+		96.84deg,
+		#dee7ff -3.53%,
+		#eff4ff -3.53%,
+		#baceff 105.96%,
+		#d1deff 105.96%
+	);
 	letter-spacing: 0.03em;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
