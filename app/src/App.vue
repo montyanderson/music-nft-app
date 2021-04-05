@@ -251,4 +251,14 @@ main {
 	margin-left: 4.9vw;
 	margin-top: 100px;
 }
+@media only screen and (max-width: 779px) {
+	.all-releases {
+		right: 250px;
+		top: 42px;
+	}
+	.my-releases {
+		top: 20px;
+		right: 260px;
+	}
+}
 </style>
