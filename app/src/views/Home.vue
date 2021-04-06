@@ -7,6 +7,9 @@
 	height: 80px;
 }
 footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin-top: 100px;
 	background-color: #051c22;
 	height: 200px;
@@ -15,8 +18,22 @@ footer {
 .footer-cont {
 	color: #878787;
 	padding-top: 40px;
-	margin-left: 4.9vw;
 	font-size: 17px;
+}
+.footer-cont h2 {
+	background: linear-gradient(
+		96.84deg,
+		#dee7ff -3.53%,
+		#eff4ff -3.53%,
+		#baceff 105.96%,
+		#d1deff 105.96%
+	);
+	letter-spacing: 0.03em;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+	margin-bottom: 37px;
+	font-size: 30px;
 }
 .logo,
 a {
@@ -24,7 +41,7 @@ a {
 	transition: all 0.2s;
 }
 a:last-child {
-	margin-left: 15px;
+	margin-left: 50px;
 	margin-bottom: 15px;
 }
 .logo-cont {
@@ -32,6 +49,18 @@ a:last-child {
 }
 .logo:hover {
 	opacity: 0.6;
+}
+.dee {
+	align-self: flex-start;
+	color: #696969;
+	text-align: center;
+	margin-left: 20px;
+	padding-top: 7px;
+}
+.line {
+	width: 100%;
+	height: 15px;
+	background-color: #69696996;
 }
 </style>
 
@@ -43,6 +72,7 @@ a:last-child {
 		<release-list v-bind:releases="releases"></release-list>
 		<footer>
 			<div class="footer-cont">
+				<h2>Lifted</h2>
 				<div class="logo-cont">
 					<a href="#">
 						<svg
@@ -84,8 +114,9 @@ a:last-child {
 						</svg>
 					</a>
 				</div>
-				<p class="dee">Version: {{ hash }}</p>
 			</div>
+			<div class="line"></div>
+			<p class="dee">Version: {{ hash }}</p>
 		</footer>
 	</div>
 </template>
