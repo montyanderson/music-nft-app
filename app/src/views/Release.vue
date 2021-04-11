@@ -615,4 +615,45 @@ tr:nth-child(3) {
 /* track list */
 
 /* main release page items */
+
+@media only screen and (max-width: 450px) {
+	.sidebar {
+		display: none;
+	}
+	.tracklist {
+		width: 75%;
+		margin-left: 20px;
+		border-collapse: separate;
+	}
+	.outer-container {
+		margin-top: 40px;
+	}
+	.outer-container img {
+		margin-left: 20px;
+		width: 120px;
+		height: 120px;
+		align-self: center;
+	}
+	.album-info {
+		margin-left: 20px;
+		align-self: center;
+		margin-top: 50px;
+	}
+	.album-info h1 {
+		font-size: 30px;
+	}
+
+	.album-info h2 {
+		font-size: 16px;
+		margin-top: 7px;
+	}
+	.album-buttons {
+		margin-top: 0px;
+	}
+	.btn-b {
+		margin-top: 0px;
+		width: 128px;
+		height: 48px;
+	}
+}
 </style>

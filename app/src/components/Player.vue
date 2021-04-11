@@ -108,7 +108,7 @@
 
 <script>
 export default {
-	data: function() {
+	data: function () {
 		return {
 			inputVolume: this.$store.state.player.volume,
 			inputCurrentTime: 0,
@@ -379,5 +379,36 @@ progress {
 	top: 100px;
 	left: calc(50% + 240px);
 	transform: translate(-50%, -50%);
+}
+@media only screen and (max-width: 450px) {
+	.back,
+	.forward {
+		display: none;
+	}
+	.playbtn {
+		left: 90%;
+		top: 60px;
+	}
+	.volume,
+	.volumeicon {
+		display: none;
+	}
+	.progress-bar {
+		top: 5px;
+	}
+	.player-container {
+		transform: translateY(20px);
+	}
+	.img {
+		margin-left: 45px;
+	}
+	.name {
+		margin-left: 100px;
+		margin-top: 20px;
+	}
+	.artist {
+		margin-top: 5px;
+		margin-left: 100px;
+	}
 }
 </style>

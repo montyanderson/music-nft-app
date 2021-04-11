@@ -62,6 +62,21 @@ a:last-child {
 	height: 15px;
 	background-color: #69696996;
 }
+@media only screen and (max-width: 450px) {
+	.page-title {
+		font-size: 50px;
+		margin-top: 50px;
+	}
+	.footer-cont {
+		margin-top: 0px;
+	}
+	footer {
+		margin-top: 0px;
+	}
+	.dee {
+		padding-bottom: 130px;
+	}
+}
 </style>
 
 <template>
