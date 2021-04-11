@@ -86,6 +86,9 @@ export default {
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+html {
+	min-height: 100vh;
+}
 
 .rel-pad {
 	padding-bottom: 700px;
