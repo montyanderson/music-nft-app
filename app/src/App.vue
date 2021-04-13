@@ -86,6 +86,9 @@ export default {
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+html {
+	min-height: 100vh;
+}
 
 .rel-pad {
 	padding-bottom: 700px;
@@ -119,6 +122,9 @@ export default {
 	bottom: 0;
 }
 
+* {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
 nav {
 	display: flex;
 	align-items: center;
@@ -265,6 +271,14 @@ main {
 	.my-releases {
 		top: 20px;
 		right: 260px;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+	.all-releases,
+	.my-releases,
+	.connectBtn {
+		display: none;
 	}
 }
 </style>
