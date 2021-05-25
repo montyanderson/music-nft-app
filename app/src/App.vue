@@ -259,10 +259,11 @@ main {
 	/* identical to box height */
 
 	color: #ffffff;
+	margin-left: 19vw;
 
-	margin-left: 4.9vw;
 	margin-top: 100px;
 }
+
 @media only screen and (max-width: 779px) {
 	.all-releases {
 		right: 250px;

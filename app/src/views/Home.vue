@@ -62,6 +62,8 @@ a:last-child {
 	height: 15px;
 	background-color: #69696996;
 }
+
+
 @media only screen and (max-width: 450px) {
 	.page-title {
 		font-size: 50px;

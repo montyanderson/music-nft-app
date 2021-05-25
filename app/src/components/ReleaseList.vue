@@ -1,9 +1,10 @@
 <template>
-	<div>
-		<div class="releases" v-if="releasesLoading === false">
-			<p class="no-releases" v-if="releases.length === 0">
+	<div class="releases-container">
+		<p class="no-releases" v-if="releases.length === 0">
 				Nothing to see here :(
 			</p>
+		<div class="releases" v-if="releasesLoading === false">
+		
 
 			<div
 				class="release"
@@ -20,6 +21,11 @@
 					{{ release.availableCopies }} available
 				</p>
 			</div>
+			
+			
+			
+			
+			
 		</div>
 
 		<div class="releases" v-else>
@@ -59,20 +65,22 @@ export default {
 </script>
 
 <style scoped>
+
+.no-releases {
+}
 .releases {
-	margin-top: 1rem;
-	position: relative;
+	display: grid;
+	row-gap: 20px;
+	column-gap: 50px;
+justify-content: center;
+  grid-template-columns: repeat(auto-fill, 15rem);
 
-	width: 95vw;
-	display: table;
-	margin-left: 4.9vw;
-	margin-right: auto;
-	display: flex;
-	flex-direction: row;
-	flex-grow: 2;
-
-	flex-wrap: wrap;
-	grid-gap: 3vw;
+}
+@media screen and (min-width: 1320px) {
+	.releases {
+		grid-template-columns: repeat(4, 15rem);
+	}
+ 
 }
 
 .release {
@@ -81,9 +89,8 @@ export default {
 
 .release .image,
 .release .image * {
-	height: calc(23vw - 1vw);
-
-	width: calc(23vw - 1vw);
+	height: 15rem;
+	width: 15rem;
 	margin-top: 30px;
 	border-radius: 1px;
 }
@@ -105,66 +112,5 @@ export default {
 	color: #878787;
 }
 
-@media only screen and (max-width: 750px) {
-	.releases {
-		width: 95vw;
-		margin-left: 3.5vw;
-		grid-gap: 3vw;
-	}
 
-	.releaseText {
-		font-size: 60px;
-		margin-left: 3.5vw;
-	}
-}
-
-@media only screen and (max-width: 500px) {
-	.releases {
-		flex-direction: column;
-		flex-wrap: nowrap;
-		margin-left: 2.5vw;
-		margin-top: 100px;
-	}
-	.release .image,
-	.release .image * {
-		width: 90px;
-		margin-top: -70px;
-		height: 90px;
-	}
-	.releaseText {
-		font-size: 50px;
-		margin-top: 80px;
-		margin-left: 2.5vw;
-	}
-	.name {
-		position: relative;
-		top: -91px;
-		left: 110px;
-		font-weight: 600;
-		font-size: 1.4rem;
-		text-align: left;
-		margin-top: 0px;
-	}
-	.artist {
-		position: relative;
-		top: -87px;
-		left: 110px;
-	}
-	.available {
-		position: relative;
-		top: -99px;
-		left: 110px;
-	}
-}
-
-@media only screen and (max-width: 300px) {
-	.releaseText {
-		font-size: 40px;
-	}
-}
-
-.no-releases {
-	margin-top: 50px;
-	font-size: 25px;
-}
 </style>
