@@ -83,7 +83,6 @@ a:last-child {
 
 <template>
 	<div class="home">
-		<h1 class="page-title">Releases</h1>
 		<div class="header"></div>
 
 		<release-list v-bind:releases="releases"></release-list>

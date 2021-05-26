@@ -1,16 +1,20 @@
 <template>
 	<div class="releases-container">
-		<p class="no-releases" v-if="releases.length === 0">
+			<div v-if="releases.length === 0 && !releasesLoading" class="no-items">
+			<h1 class="routeTitle" > {{pageTitle}} </h1>
+			<p class="no-releases" >
 				Nothing to see here :(
 			</p>
+			</div>
+			
 		<div class="releases" v-if="releasesLoading === false">
-		
-
 			<div
 				class="release"
 				v-for="release in releases"
 				v-on:click="goToRelease(release)"
 			>
+					<h1 class="page-title">{{pageTitle}}</h1>
+
 				<img class="image" v-bind:src="release.imageUrl" />
 				<p class="name">{{ release.name }}</p>
 				<p class="artist">{{ release.artist }}</p>
@@ -21,10 +25,6 @@
 					{{ release.availableCopies }} available
 				</p>
 			</div>
-			
-			
-			
-			
 			
 		</div>
 
@@ -52,6 +52,9 @@ export default {
 	computed: {
 		releasesLoading() {
 			return this.$store.state.releasesLoading;
+		},
+		pageTitle() {
+			return this.$route.name
 		}
 	},
 	methods: {
@@ -65,9 +68,46 @@ export default {
 </script>
 
 <style scoped>
-
-.no-releases {
+.no-items {
+	top: -80px;
+	width: 100%;
+	position: absolute;
+	margin-left: 12.1vw;
 }
+.routeTitle {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 70px;
+	line-height: 82px;
+	color: #ffffff;
+}
+@media only screen and (max-width: 450px) {
+	.no-items {
+		display: flex;
+		margin-left: 0px;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.routeTitle {
+		text-align: center;
+		font-size: 50px;
+	}
+	.no-releases {
+	text-align: center;
+}
+	}
+.no-releases {
+	color: #dbdbdb;
+	font-size: 25px;
+}
+.releases-container {
+	margin-top: 140px;
+	position: relative;
+}
+
+
+
 .releases {
 	display: grid;
 	row-gap: 20px;

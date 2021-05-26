@@ -251,17 +251,17 @@ main {
 }
 
 .page-title {
+	position: absolute;
 	font-family: Inter;
 	font-style: normal;
 	font-weight: bold;
 	font-size: 70px;
 	line-height: 82px;
 	/* identical to box height */
-
+	top: -80px;
 	color: #ffffff;
-	margin-left: 19vw;
+	
 
-	margin-top: 100px;
 }
 
 @media only screen and (max-width: 779px) {
@@ -276,6 +276,15 @@ main {
 }
 
 @media only screen and (max-width: 450px) {
+	.release {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.page-title {
+		align-self: center;
+		font-size: 50px;
+	}
 	.all-releases,
 	.my-releases,
 	.connectBtn {
