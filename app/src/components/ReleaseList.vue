@@ -10,11 +10,11 @@
 		<div class="releases" v-if="releasesLoading === false">
 			<div
 				class="release"
-				v-for="release in releases"
-				v-on:click="goToRelease(release)"
+				v-for="(release, index) in releases"
 			>
-					<h1 class="page-title">{{pageTitle}}</h1>
-
+					<h1 class="page-title" v-if="index === 0">{{pageTitle}}</h1>
+				<div v-on:click="goToRelease(release)"
+>
 				<img class="image" v-bind:src="release.imageUrl" />
 				<p class="name">{{ release.name }}</p>
 				<p class="artist">{{ release.artist }}</p>
@@ -24,7 +24,10 @@
 				<p class="available" v-else>
 					{{ release.availableCopies }} available
 				</p>
+				</div>
 			</div>
+			
+			
 			
 		</div>
 
@@ -58,6 +61,9 @@ export default {
 		}
 	},
 	methods: {
+		relLog() {
+			console.log(this.$store.state.releases);
+		},
 		goToRelease({ id }) {
 			this.$router.push({
 				path: `/release/${id}`
